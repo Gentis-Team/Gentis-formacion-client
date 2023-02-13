@@ -18,7 +18,7 @@ import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createCourseFn } from '@/api/courseApi';
-import FileUploader from '@/components/layout/utils/FileUploader';
+import FileUploader from '@/components/layout/forms/inputs/FileUploader';
 
 const createCourseSchema = object({
     title: string().min(1, 'Title is required'),
