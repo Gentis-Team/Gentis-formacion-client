@@ -20,9 +20,17 @@ import './CourseItemStyles.scss';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteCourseFn } from '@/api/courseApi';
 import './CourseItemStyles.scss'
+import { useStateContext } from '@/services/providers/StateContextProvider';
+
 const SERVER_ENDPOINT = import.meta.env.VITE_REACT_APP_SERVER_ENDPOINT;
 
 const CourseItem = ({ course }) => {
+    const stateContext = useStateContext();
+    const user = stateContext.state.authUser;
+
+    const can = (permission) =>
+        (user?.permissions).find((p) => p === permission) ? true : false;
+
     const queryClient = useQueryClient();
     const [openCourseModal, setOpenCourseModal] = useState(false);
 
@@ -61,14 +69,14 @@ const CourseItem = ({ course }) => {
                         height='250'
                         image={`${course.image}`}
                         alt='green iguana'
-                        
+
                     />
                     <CardContent>
                         <Typography
                             gutterBottom
                             variant='h5'
                             component='div'
-                            sx={{  fontWeight: 'bold' }}
+                            sx={{ fontWeight: 'bold' }}
                         >
                             {course.name.length > 20
                                 ? `${course.name.substring(0, 20)}...`
@@ -103,10 +111,6 @@ const CourseItem = ({ course }) => {
                             sx={{ px: '0.5rem' }}
                         >
                             <Box display='flex' alignItems='center'>
-                               {/*  <Avatar
-                                    alt='cart image'
-                                    src={`${SERVER_ENDPOINT}/api/static/course/${course.image}`}
-                                /> */}
                                 <Typography
                                     variant='body2'
                                     sx={{
@@ -116,27 +120,31 @@ const CourseItem = ({ course }) => {
                                     Codevo
                                 </Typography>
                             </Box>
-                            <div  className='course-settings'>
-                                <li>
-                                    <MoreHorizOutlinedIcon />
-                                </li>
-                                <ul className='menu'>
-                                    <li onClick={() => setOpenCourseModal(true)}>
-                                        <ModeEditOutlineOutlinedIcon
-                                            fontSize='small'
-                                            sx={{ mr: '0.6rem' }}
-                                        />
-                                        Edit
+                            {user && can('edit courses') ?
+                                <div className='course-settings'>
+                                    <li>
+                                        <MoreHorizOutlinedIcon />
                                     </li>
-                                    <li onClick={() => onDeleteHandler(course.id)}>
-                                        <DeleteOutlinedIcon
-                                            fontSize='small'
-                                            sx={{ mr: '0.6rem' }}
-                                        />
-                                        Delete
-                                    </li>
-                                </ul>
-                            </div>
+                                    <ul className='menu'>
+                                        <li onClick={() => setOpenCourseModal(true)}>
+                                            <ModeEditOutlineOutlinedIcon
+                                                fontSize='small'
+                                                sx={{ mr: '0.6rem' }}
+                                            />
+                                            Edit
+                                        </li>
+                                        {can('delete courses') ?
+                                            <li onClick={() => onDeleteHandler(course.id)}>
+                                                <DeleteOutlinedIcon
+                                                    fontSize='small'
+                                                    sx={{ mr: '0.6rem' }}
+                                                />
+                                                Delete
+                                            </li> : null
+                                        }
+                                    </ul>
+                                </div> : null
+                            }
                         </Box>
                     </CardActions>
                 </Card>
