@@ -5,11 +5,13 @@ import {
     Route
 } from "react-router-dom";
 
+import Home from '@/views/home/Home';
+
 const PublicRoute = () => {
     return (
         <Router>
             <Routes>
-                <Route path="*" element="" />
+                <Route path='/' element={<Home />} />
             </Routes>
         </Router>
     )
