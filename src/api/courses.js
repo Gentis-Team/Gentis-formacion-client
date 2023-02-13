@@ -1,8 +1,8 @@
 import http from ".";
 
-export const searchByTitle = async ({ title, fetchCached }) => {
+export const searchByTitle = async ({ name, fetchCached }) => {
   const searchParams = new URLSearchParams({
-    title,
+    name,
     fetchCached: String(Number(fetchCached)),
   });
 

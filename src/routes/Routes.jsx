@@ -5,6 +5,7 @@ import RequireUser from '@/guards/RequireUser';
 import HomePage from '@/views/home/Home';
 import LoginPage from '@/views/login/Login';
 import ProfilePage from '@/views/profile/Profile';
+import Search from '@/components/navigation/search/Search';
 
 const Loadable =
     (Component) => (props) =>
@@ -40,6 +41,10 @@ const normalRoutes = {
         {
             index: true,
             element: <HomePage />,
+        },
+        {
+            path: 'search',
+            element: <Search />,
         },
         {
             path: 'profile',

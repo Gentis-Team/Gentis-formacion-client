@@ -98,7 +98,7 @@ const CourseItem = ({ course }) => {
                                     color: '#ffa238',
                                 }}
                             >
-                                {format(parseISO(course.created_at), 'PPP')}
+                                {format(parseISO(course.start_date), 'PPP')}
                             </Typography>
                         </Box>
                     </CardContent>
@@ -116,7 +116,7 @@ const CourseItem = ({ course }) => {
                                         ml: '1rem',
                                     }}
                                 >
-                                    Codevo
+                                    {course.code}
                                 </Typography>
                             </Box>
                             {user && can('edit courses') ?

@@ -22,8 +22,8 @@ import {
   
   
   const updateCourseSchema = object({
+    code: string(),
     name: string().max(70),
-    category: string(),
     description: string(),
     //image: z.instanceof(File),
   }).partial();
@@ -75,8 +75,8 @@ import {
     useEffect(() => {
       if (course) {
         methods.reset({
+          code: course.code,
           name: course.name,
-          category: course.category,
           description: course.description,
         });
       }
@@ -114,17 +114,17 @@ import {
             autoComplete='off'
             onSubmit={methods.handleSubmit(onSubmitHandler)}
           >
+             <TextField
+              label='Code'
+              fullWidth
+              sx={{ mb: '1rem' }}
+              {...methods.register('code')}
+            />
             <TextField
               label='Title'
               fullWidth
               sx={{ mb: '1rem' }}
               {...methods.register('name')}
-            />
-            <TextField
-              label='Category'
-              fullWidth
-              sx={{ mb: '1rem' }}
-              {...methods.register('category')}
             />
             <Controller
               name='description'
