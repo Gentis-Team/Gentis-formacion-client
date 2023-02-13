@@ -12,14 +12,13 @@ import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import { useState } from 'react';
-import CourseModal from '@/components/layout/modals/CourseModal';
+import CourseModal from '@/components/modals/CourseModal';
 import { toast } from 'react-toastify';
-import UpdateCourse from './UpdateCourse';
+import UpdateCourse from '@/components/modals/UpdateCourse';
 import { format, parseISO } from 'date-fns';
 import './CourseItemStyles.scss';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteCourseFn } from '@/api/courseApi';
-import './CourseItemStyles.scss'
 import { useStateContext } from '@/services/providers/StateContextProvider';
 
 const SERVER_ENDPOINT = import.meta.env.VITE_REACT_APP_SERVER_ENDPOINT;

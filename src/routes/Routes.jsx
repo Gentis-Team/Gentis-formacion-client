@@ -1,7 +1,7 @@
 import { Suspense, lazy } from 'react';
-import FullScreenLoader from '@/components/FullScreenLoader';
+import FullScreenLoader from '@/components/layout/loaders/FullScreenLoader';
 import Layout from '@/components/layout/Layout';
-import RequireUser from '../components/layout/utils/RequireUser';
+import RequireUser from '@/guards/RequireUser';
 import HomePage from '@/views/home/Home';
 import LoginPage from '@/views/login/Login';
 import ProfilePage from '@/views/profile/Profile';

@@ -2,7 +2,7 @@ import { useCookies } from 'react-cookie';
 import { useQuery } from '@tanstack/react-query';
 import { getMeFn } from '@/api/authApi';
 import { useStateContext } from '@/services/providers/StateContextProvider';
-import FullScreenLoader from '@/components/FullScreenLoader';
+import FullScreenLoader from '@/components/layout/loaders/FullScreenLoader';
 import React from 'react';
 
 const AuthMiddleware = ({ children }) => {

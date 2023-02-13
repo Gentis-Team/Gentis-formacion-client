@@ -18,7 +18,7 @@ import {
   import { toast } from 'react-toastify';
   import { useMutation, useQueryClient } from '@tanstack/react-query';
   import { updateCourseFn } from '@/api/courseApi';
-  import FileUploader from '@/components/layout/utils/FileUploader';
+  import FileUploader from '@/components/layout/forms/inputs/FileUploader';
   
   
   const updateCourseSchema = object({
