@@ -3,10 +3,9 @@ import { Box, Container, Grid } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import { getAllCoursesFn } from '@/api/courseApi';
-import FullScreenLoader from '@/components/FullScreenLoader';
-import CourseItem from '@/components/layout/course/CourseItem';
-import Message from '@/components/layout/messages/Message';
-import Layout from '@/components/layout/Layout';
+import FullScreenLoader from '@/components/layout/loaders/FullScreenLoader';
+import CourseItem from '@/components/layout/content/CourseItem';
+import Message from '@/components/messages/Message';
 
 const Home = () => {
   const { isLoading, data: courses } = useQuery(['courses'], () => getAllCoursesFn(), {
@@ -30,7 +29,6 @@ const Home = () => {
     return <FullScreenLoader />;
   }
   return (
-    <Layout>
       <Container
         maxWidth={false}
         sx={{ backgroundColor: '#555555', minHeight: '100vh' }}
@@ -54,7 +52,6 @@ const Home = () => {
           </Grid>
         )}
       </Container>
-    </Layout>
   );
 };
 
