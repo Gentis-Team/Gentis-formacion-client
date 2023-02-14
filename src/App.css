@@ -7,3 +7,9 @@ body{
     margin:0;
     padding:0;
 }
+
+.boxUno{
+    display: grid !important;
+    padding: 20px;
+
+}

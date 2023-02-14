@@ -55,6 +55,7 @@ const Home = () => {
         )}
       </Container>
     </Layout>
+  
   );
 };
 

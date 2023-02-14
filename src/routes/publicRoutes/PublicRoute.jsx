@@ -7,6 +7,7 @@ import {
 
 import Home from '@/views/home/Home';
 
+
 const PublicRoute = () => {
     return (
         <Router>
