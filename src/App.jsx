@@ -1,23 +1,20 @@
 import * as React from 'react';
 import './App.css'
-import { PublicRoute } from './routes'
-import RadioGroup from '@mui/material/RadioGroup';
-import RadioButton from './components/layout/Utils/Forms/RadioButton'
-import FormLabel from '@mui/material/FormLabel';
-import { ImportantDevices } from '@mui/icons-material';
-import NewCourse  from './components/layout/Forms/NewCourse.jsx';
-
-
+import { CssBaseline } from '@mui/material';
+import { useRoutes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import routes from './routes/Routes';
 
 function App() {
-
+  const content = useRoutes(routes);
   return (
-    <div >
-        <NewCourse/>
-
-    </div>
-
-  )
+    <>
+      <CssBaseline />
+      <ToastContainer />
+      {content}
+    </>
+  );
 }
 
-export default App
+export default App;

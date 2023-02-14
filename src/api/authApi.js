@@ -1,19 +1,20 @@
 import axios from 'axios';
 //import { LoginInput } from '../pages/login.page';
 //import { RegisterInput } from '../pages/register.page';
+import { useCookies } from 'react-cookie';
 
 
 const BASE_URL = import.meta.env.VITE_REACT_APP_SERVER_ENDPOINT;
 
 export const authApi = axios.create({
   baseURL: BASE_URL,
-  withCredentials: false,
+  withCredentials: true,
 });
 
 authApi.defaults.headers.common['Content-Type'] = 'application/json';
 
 export const refreshAccessTokenFn = async () => {
-  const response = await authApi.get('/api/auth/refresh');
+  const response = await authApi.get('/api/refresh');
   return response.data;
 };
 
@@ -37,24 +38,24 @@ authApi.interceptors.response.use(
 );
 
 export const signUpUserFn = async (user) => {
-  const response = await authApi.post('/api/auth/register', user);
+  const response = await authApi.post('/api/register', user);
   return response.data;
 };
 
 export const loginUserFn = async (user) => {
-  const response = await authApi.post('/api/auth/login', user);
+  const response = await authApi.post('/api/login', user);
   return response.data;
 };
 
 export const verifyEmailFn = async (verificationCode) => {
   const response = await authApi.get(
-    `/api/auth/verifyemail/${verificationCode}`
+    `/api/verifyemail/${verificationCode}`
   );
   return response.data;
 };
 
 export const logoutUserFn = async () => {
-  const response = await authApi.get('/api/auth/logout');
+  const response = await authApi.post('/api/logout');
   return response.data;
 };
 
