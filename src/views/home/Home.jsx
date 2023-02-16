@@ -1,4 +1,4 @@
-
+import React, { useEffect, useState } from 'react';
 import { Box, Container, Grid } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
@@ -6,8 +6,10 @@ import { getAllCoursesFn } from '@/api/courseApi';
 import FullScreenLoader from '@/components/layout/loaders/FullScreenLoader';
 import CourseItem from '@/components/layout/content/CourseItem';
 import Message from '@/components/messages/Message';
+import Search from '@/components/navigation/search/Search';
 
 const Home = () => {
+  const [query, setQuery] = useState(null);
   const { isLoading, data: courses } = useQuery(['courses'], () => getAllCoursesFn(), {
     select: (data) => data.courses,
     onError: (error) => {
@@ -24,6 +26,14 @@ const Home = () => {
       }
     },
   });
+  
+  const handleOnSearch = (string, results) => {
+    string.length > 0 ? setQuery(results) : setQuery(null);
+  };
+
+  const handleOnClear = () => {
+    setQuery(null);
+  };
 
   if (isLoading) {
     return <FullScreenLoader />;
@@ -33,6 +43,7 @@ const Home = () => {
         maxWidth={false}
         sx={{ backgroundColor: '#555555', minHeight: '100vh' }}
       >
+        <Search onSearch={handleOnSearch} onClear={handleOnClear} items={courses}/>
         {courses?.length === 0 ? (
           <Box maxWidth='sm' sx={{ mx: 'auto', py: '5rem' }}>
             <Message type='info' title='Info'>
@@ -43,12 +54,13 @@ const Home = () => {
           <Grid
             container
             rowGap={5}
-            maxWidth='lg'
-            sx={{ margin: '0 auto', pt: '5rem' }}
           >
-            {courses?.map((course) => (
+            {!query ? courses?.map((course) => (
               <CourseItem key={course.id} course={course} />
-            ))}
+            ))
+          : query?.map((course) => (
+            <CourseItem key={course.id} course={course} />
+          ))}
           </Grid>
         )}
       </Container>
