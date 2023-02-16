@@ -9,16 +9,7 @@ export default function TimeInput(props) {
   return (
     <Stack 
       component="form" 
-      sx={{
-        displa: "flex",
-        flexDirection: "row",
-        p: 2,
-        label:{color:'green'},
-        '& input': { color: 'black' },
-        TextField:{color:'black'},
-        time:{color:'black'},
-        bgcolor:'white'
-      }}
+      sx={props.sxTime}
     >
       <TextField
         id="time"

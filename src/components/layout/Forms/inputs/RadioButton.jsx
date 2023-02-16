@@ -20,7 +20,7 @@ export default function RadioButton(props) {
       >
         {props.titleGroup}
       </FormLabel>
-      <RadioGroup sx={props.sx}
+      <RadioGroup sx={props.sxStile}
         aria-labelledby="demo-radio-buttons-group-label"
         // defaultValue="female"
         name="radio-buttons-group"
