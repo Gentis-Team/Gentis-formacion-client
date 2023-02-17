@@ -15,7 +15,7 @@ const LoadingButton = styled(_LoadingButton)`
   &:hover {
     transform: translateY(-2px);
   }
-`;
+`; // Por qué Styled component??
 
 const Header = () => {
     const navigate = useNavigate();

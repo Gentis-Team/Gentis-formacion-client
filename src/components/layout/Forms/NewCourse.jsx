@@ -1,9 +1,11 @@
 import React from 'react'
 
-const NewCourse = () => {
+
+
+export default function NewCourse()  {
   return (
-    <div>NewCourse</div>
+    <div >
+        
+    </div>
   )
 }
-
-export default NewCourse
