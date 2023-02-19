@@ -43,6 +43,7 @@ export const ColorModeProvider = ({ children }) => {
                         background: {
                             default: '#1D182F',
                             paper: '#231F35',
+                            filter: 'green'
                         },
                         text: {
                             secondary: '#F7F7FD',

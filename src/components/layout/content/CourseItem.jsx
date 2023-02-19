@@ -1,17 +1,28 @@
+import { styled } from '@mui/material/styles';
+import { red } from '@mui/material/colors';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ShareIcon from '@mui/icons-material/Share';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
 import {
-    Avatar,
+    IconButton,
     Box,
+    Avatar,
+    Collapse,
     Card,
     CardActions,
+    CardHeader,
     CardContent,
     CardMedia,
     Grid,
     Typography,
+    Tooltip,
 } from '@mui/material';
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import CourseModal from '@/components/modals/CourseModal';
 import { toast } from 'react-toastify';
 import UpdateCourse from '@/components/modals/UpdateCourse';
@@ -20,12 +31,30 @@ import './CourseItemStyles.scss';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteCourseFn } from '@/api/courseApi';
 import { useStateContext } from '@/services/providers/StateContextProvider';
+import InfoIcon from '@mui/icons-material/Info';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 const SERVER_ENDPOINT = import.meta.env.VITE_REACT_APP_SERVER_ENDPOINT;
+
+const ExpandMore = styled((props) => {
+    const { expand, ...other } = props;
+    return <IconButton {...other} />;
+})(({ theme, expand }) => ({
+    transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+        duration: theme.transitions.duration.shortest,
+    }),
+}));
 
 const CourseItem = ({ course }) => {
     const stateContext = useStateContext();
     const user = stateContext.state.authUser;
+    const [expanded, setExpanded] = React.useState(false);
+
+    const handleExpandClick = () => {
+        setExpanded(!expanded);
+    };
 
     const can = (permission) =>
         (user?.permissions).find((p) => p === permission) ? true : false;
@@ -62,64 +91,75 @@ const CourseItem = ({ course }) => {
     return (
         <>
             <Grid item xs={12} md={6} lg={4}>
-                <Card sx={{ maxWidth: 345, overflow: 'visible' }}>
-                    <CardMedia
-                        component='img'
-                        height='250'
-                        image={`${course.image}`}
-                        alt='green iguana'
-
+                <Card >
+                    <CardHeader
+                        avatar={
+                            <Avatar aria-label="recipe">
+                                <FileCopyIcon />
+                            </Avatar>
+                        }
+                        action={
+                            <IconButton aria-label="settings">
+                                <MoreVertIcon />
+                            </IconButton>
+                        }
+                        titleTypographyProps={{variant:'body2' }}
+                        subheaderTypographyProps={{variant:'subtitle2' }}
+                        title={course.categories[0].name}
+                        subheader={course.name}
                     />
                     <CardContent>
-                        <Typography
-                            gutterBottom
-                            variant='h5'
-                            component='div'
-                            sx={{ fontWeight: 'bold' }}
-                        >
-                            {course.name.length > 20
-                                ? `${course.name.substring(0, 20)}...`
-                                : course.name}
+                        <Typography variant="body2" color="text.secondary">
+                            Tags
                         </Typography>
-                        <Box display='flex' alignItems='center' sx={{ mt: '1rem' }}>
-                            <Typography
-                                variant='body1'
-                                sx={{
-                                    p: '0.1rem 0.4rem',
-                                    borderRadius: 1,
-                                    mr: '1rem',
-                                }}
-                            >
-                                {course.category}
-                            </Typography>
-                            <Typography
-                                variant='body2'
-                                sx={{
-                                    color: '#ffa238',
-                                }}
-                            >
-                                {format(parseISO(course.start_date), 'PPP')}
-                            </Typography>
-                        </Box>
                     </CardContent>
-                    <CardActions>
-                        <Box
+                    <CardActions disableSpacing>
+                    <Tooltip title="Demana més informació" placement="bottom">
+                        <IconButton aria-label="Demana més informació">
+                            <InfoIcon /> 
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Posat en contacte amb nosaltres" placement="bottom">
+                        <IconButton aria-label="Posat en contacte amb nosaltres utilitzant Whatsapp">
+                            <WhatsAppIcon /> 
+                        </IconButton>
+                    </Tooltip>
+
+                        <ExpandMore
+                            expand={expanded}
+                            onClick={handleExpandClick}
+                            aria-expanded={expanded}
+                            aria-label="show more"
+                        >
+                            <ExpandMoreIcon />
+                        </ExpandMore>
+                    </CardActions>
+                    <Collapse in={expanded} timeout="auto" unmountOnExit>
+                        <CardContent>
+                            <Typography paragraph>{course.description}</Typography>
+                        </CardContent>
+                    </Collapse>
+                </Card>
+            </Grid>
+            <CourseModal
+                openCourseModal={openCourseModal}
+                setOpenCourseModal={setOpenCourseModal}
+            >
+                <UpdateCourse setOpenCourseModal={setOpenCourseModal} course={course} />
+            </CourseModal>
+        </>
+    );
+};
+
+export default CourseItem;
+
+{/* <Box
                             display='flex'
                             justifyContent='space-between'
                             width='100%'
                             sx={{ px: '0.5rem' }}
                         >
-                            <Box display='flex' alignItems='center'>
-                                <Typography
-                                    variant='body2'
-                                    sx={{
-                                        ml: '1rem',
-                                    }}
-                                >
-                                    {course.code}
-                                </Typography>
-                            </Box>
-                            {user && can('edit courses') ?
+                                 {user && can('edit courses') ?
                                 <div className='course-settings'>
                                     <li>
                                         <MoreHorizOutlinedIcon />
@@ -144,18 +184,4 @@ const CourseItem = ({ course }) => {
                                     </ul>
                                 </div> : null
                             }
-                        </Box>
-                    </CardActions>
-                </Card>
-            </Grid>
-            <CourseModal
-                openCourseModal={openCourseModal}
-                setOpenCourseModal={setOpenCourseModal}
-            >
-                <UpdateCourse setOpenCourseModal={setOpenCourseModal} course={course} />
-            </CourseModal>
-        </>
-    );
-};
-
-export default CourseItem;
+                            </Box> */}
