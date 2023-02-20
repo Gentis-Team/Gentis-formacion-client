@@ -3,11 +3,17 @@ import { authApi } from './authApi';
 
 export const getAllCoursesFn = async () => {
     const response = await authApi.get(`/api/courses`);
+
     return response.data;
 };
 
 export const getCourseFn = async (id) => {
     const response = await authApi.get(`/api/courses/${id}`);
+    return response.data;
+};
+
+export const getFilteredCoursesFn = async (formData) => {
+    const response = await authApi.post(`/api/courses/filter`, formData);
     return response.data;
 };
 
@@ -24,6 +30,7 @@ export const updateCourseFn = async ({
     id,
     formData,
 }) => {
+    console.log('formData', formData);
     const response = await authApi.put(`/api/courses/${id}`, formData, {
         //headers: {'Content-Type': 'multipart/form-data',},
     });

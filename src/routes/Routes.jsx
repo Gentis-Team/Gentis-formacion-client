@@ -19,6 +19,7 @@ const UnauthorizePage = Loadable(
     lazy(() => import('@/views/errors/UnauthorizedPage'))
 );
 
+/* A route that is not protected by the `RequireUser` guard. */
 const authRoutes = {
     path: '*',
     children: [
@@ -33,6 +34,7 @@ const authRoutes = {
     ],
 };
 
+/* A route that is protected by the `RequireUser` guard. */
 const normalRoutes = {
     path: '*',
     element: <Layout />,

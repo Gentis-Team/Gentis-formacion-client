@@ -12,6 +12,8 @@ import { LocationsContextProvider } from '@/services/providers/LocationsContextP
 import { CategoriesContextProvider } from '@/services/providers/CategoriesContextProvider';
 import { RequirementsContextProvider } from '@/services/providers/RequirementsContextProvider';
 import { GroupsContextProvider } from '@/services/providers/GroupsContextProviders';
+import { FiltersContextProvider } from './services/providers/FiltersContextProvider';
+import { FilteredCoursesContextProvider } from './services/providers/FilteredCoursesProvider';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -29,26 +31,33 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ColorModeProvider>
+    <FiltersContextProvider>
+
       <QueryClientProvider client={queryClient}>
         <Router>
           <StateContextProvider>
-            <CoursesContextProvider>
-              <LocationsContextProvider>
-                <CategoriesContextProvider>
-                  <RequirementsContextProvider>
-                    <GroupsContextProvider>
-                      <AuthMiddleware>
-                        <App />
-                      </AuthMiddleware>
-                    </GroupsContextProvider>
-                  </RequirementsContextProvider>
-                </CategoriesContextProvider>
-              </LocationsContextProvider>
-            </CoursesContextProvider>
+
+              <CoursesContextProvider>
+                <FilteredCoursesContextProvider>
+                <LocationsContextProvider>
+                  <CategoriesContextProvider>
+                    <RequirementsContextProvider>
+                      <GroupsContextProvider>
+                        <AuthMiddleware>
+                          <App />
+                        </AuthMiddleware>
+                      </GroupsContextProvider>
+                    </RequirementsContextProvider>
+                  </CategoriesContextProvider>
+                </LocationsContextProvider>
+                </FilteredCoursesContextProvider>
+              </CoursesContextProvider>
+            
           </StateContextProvider>
           <ReactQueryDevtools initialisopen="{false}" />
         </Router>
       </QueryClientProvider>
+      </FiltersContextProvider>
     </ColorModeProvider>
   </React.StrictMode>,
 )

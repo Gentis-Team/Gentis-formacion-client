@@ -33,6 +33,7 @@ import { deleteCourseFn } from '@/api/courseApi';
 import { useStateContext } from '@/services/providers/StateContextProvider';
 import InfoIcon from '@mui/icons-material/Info';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import SettingsMenu from './SettingsMenu';
 
 const SERVER_ENDPOINT = import.meta.env.VITE_REACT_APP_SERVER_ENDPOINT;
 
@@ -88,6 +89,15 @@ const CourseItem = ({ course }) => {
         }
     };
 
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleSettingsClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
     return (
         <>
             <Grid item xs={12} md={6} lg={4}>
@@ -99,14 +109,20 @@ const CourseItem = ({ course }) => {
                             </Avatar>
                         }
                         action={
-                            <IconButton aria-label="settings">
+                            <IconButton onClick={handleSettingsClick} aria-label="settings">
                                 <MoreVertIcon />
                             </IconButton>
                         }
-                        titleTypographyProps={{variant:'body2' }}
-                        subheaderTypographyProps={{variant:'subtitle2' }}
+                        titleTypographyProps={{ variant: 'body2' }}
+                        subheaderTypographyProps={{ variant: 'subtitle2' }}
                         title={course.categories[0].name}
                         subheader={course.name}
+                    />
+                    <SettingsMenu 
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleClose}
+                        setOpenCourseModal={setOpenCourseModal} 
                     />
                     <CardContent>
                         <Typography variant="body2" color="text.secondary">
@@ -114,16 +130,16 @@ const CourseItem = ({ course }) => {
                         </Typography>
                     </CardContent>
                     <CardActions disableSpacing>
-                    <Tooltip title="Demana més informació" placement="bottom">
-                        <IconButton aria-label="Demana més informació">
-                            <InfoIcon /> 
-                        </IconButton>
-                    </Tooltip>
-                    <Tooltip title="Posat en contacte amb nosaltres" placement="bottom">
-                        <IconButton aria-label="Posat en contacte amb nosaltres utilitzant Whatsapp">
-                            <WhatsAppIcon /> 
-                        </IconButton>
-                    </Tooltip>
+                        <Tooltip title="Demana més informació" placement="bottom">
+                            <IconButton aria-label="Demana més informació">
+                                <InfoIcon />
+                            </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Posat en contacte amb nosaltres" placement="bottom">
+                            <IconButton aria-label="Posat en contacte amb nosaltres utilitzant Whatsapp">
+                                <WhatsAppIcon />
+                            </IconButton>
+                        </Tooltip>
 
                         <ExpandMore
                             expand={expanded}
