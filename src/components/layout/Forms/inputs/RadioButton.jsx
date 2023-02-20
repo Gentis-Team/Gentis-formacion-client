@@ -30,21 +30,6 @@ export default function RadioButton(props) {
           control={<Radio color="success" sx={{ color: "black" }} />}
           label={props.Group}
         />
-        <FormControlLabel
-          value={props.GroupDos}
-          control={<Radio color="success" sx={{ color: "black" }} />}
-          label={props.GroupDos}
-        />
-        <FormControlLabel
-          value={props.GroupTres}
-          control={<Radio color="success" sx={{ color: "black" }} />}
-          label={props.GroupTres}
-        />
-        <FormControlLabel
-          value={props.GroupCuatro}
-          control={<Radio color="success" sx={{ color: "black" }} />}
-          label={props.GroupCuatro}
-        />
       </RadioGroup>
     </FormControl>
   );
