@@ -1,12 +1,12 @@
 import React from 'react'
-import { FormLabel, Radio, RadioGroup, Box, FormControlLabel} from '@mui/material';
+import { FormLabel, Radio, RadioGroup, FormControlLabel, Box} from '@mui/material';
 import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined';
 
 const FilterRequirements = (props) => {
   const { requirements, ...otherProps } = props;
   return (
     <React.Fragment>
-      <Box sx={{ backgroundColor: 'background.filter', }}>
+      <Box sx={{ backgroundColor: 'background.filter'}}>
         <FormLabel component="legend" ><Box sx={{ display: "flex", alignItems: 'center', gap: 2, py: 1, px: 3 }}><AssignmentTurnedInOutlinedIcon />Requisits d'acces</Box></FormLabel>
       </Box>
       <RadioGroup
