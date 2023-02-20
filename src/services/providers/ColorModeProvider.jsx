@@ -1,5 +1,5 @@
 import React, { useState, createContext, useContext, useMemo } from "react";
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material';
 
 
 export const ColorModeContext = createContext({
@@ -43,7 +43,7 @@ export const ColorModeProvider = ({ children }) => {
                         background: {
                             default: '#1D182F',
                             paper: '#231F35',
-                            filter: 'green'
+                            filter: 'blue'
                         },
                         text: {
                             secondary: '#F7F7FD',

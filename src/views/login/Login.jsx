@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { getMeFn, loginUserFn } from '@/api/authApi';
 import { useStateContext } from '@/services/providers/StateContextProvider';
+import useHandleError from '@/services/hooks/useHandleError';
 
 const LoadingButton = styled(_LoadingButton)`
   padding: 0.6rem 0;
@@ -74,19 +75,7 @@ const LoginPage = () => {
                 toast.success('You successfully logged in');
                 navigate(from);
             },
-            onError: (error) => {
-                if (Array.isArray((error).response.data.error)) {
-                    (error).response.data.error.forEach((el) =>
-                        toast.error(el.message, {
-                            position: 'top-right',
-                        })
-                    );
-                } else {
-                    toast.error((error).response.data.message, {
-                        position: 'top-right',
-                    });
-                }
-            },
+            onError: (error) => useHandleError(error),
         }
     );
 

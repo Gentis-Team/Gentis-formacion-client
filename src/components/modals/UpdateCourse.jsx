@@ -19,6 +19,7 @@ import {
   import { useMutation, useQueryClient } from '@tanstack/react-query';
   import { updateCourseFn } from '@/api/courseApi';
   import FileUploader from '@/components/layout/forms/inputs/FileUploader';
+  import useHandleError from '@/services/hooks/useHandleError';
   
   
   const updateCourseSchema = object({
@@ -40,20 +41,7 @@ import {
           toast.success('Course updated successfully');
           setOpenCourseModal(false);
         },
-        onError: (error) => {
-          setOpenCourseModal(false);
-          if (Array.isArray(error.response.data.error)) {
-            error.data.error.forEach((el) =>
-              toast.error(el.message, {
-                position: 'top-right',
-              })
-            );
-          } else {
-            toast.error(error.response.data.message, {
-              position: 'top-right',
-            });
-          }
-        },
+        onError: (error) => useHandleError(error),
       }
     );
   

@@ -2,8 +2,7 @@ import React from 'react'
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import { FormLabel, Grid } from '@mui/material';
-import { Box } from '@mui/system';
+import { FormLabel, Grid, Box } from '@mui/material';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 
 const FilterLocations = (props) => {

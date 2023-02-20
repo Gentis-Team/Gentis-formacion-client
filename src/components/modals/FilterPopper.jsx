@@ -5,13 +5,14 @@ import OrderBy from '../navigation/poppers/OrderBy';
 
 
 const FilterPopper = (props) => {
+    const {handleClose, ...otherProps} = props;
     return (
-        <Popper {...props} transition style={{ width: 350 }}>
+        <Popper {...otherProps} transition style={{ width: 350 }}>
             {({ TransitionProps }) => (
                 <Fade {...TransitionProps} timeout={350}>
                     <Paper>
                         {props.placement === 'bottom-start' ? 
-                            <Filters/>
+                            <Filters handleClose={handleClose}/>
                             :
                             <OrderBy/>
                         }
