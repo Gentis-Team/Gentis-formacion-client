@@ -5,7 +5,6 @@ import RequireUser from '@/guards/RequireUser';
 import HomePage from '@/views/home/Home';
 import LoginPage from '@/views/login/Login';
 import ProfilePage from '@/views/profile/Profile';
-import Search from '@/components/navigation/search/Search';
 
 const Loadable =
     (Component) => (props) =>
@@ -20,6 +19,7 @@ const UnauthorizePage = Loadable(
     lazy(() => import('@/views/errors/UnauthorizedPage'))
 );
 
+/* A route that is not protected by the `RequireUser` guard. */
 const authRoutes = {
     path: '*',
     children: [
@@ -34,6 +34,7 @@ const authRoutes = {
     ],
 };
 
+/* A route that is protected by the `RequireUser` guard. */
 const normalRoutes = {
     path: '*',
     element: <Layout />,
@@ -41,10 +42,6 @@ const normalRoutes = {
         {
             index: true,
             element: <HomePage />,
-        },
-        {
-            path: 'search',
-            element: <Search />,
         },
         {
             path: 'profile',

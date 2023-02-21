@@ -23,7 +23,6 @@ const RequireUser = ({ allowedRoles }) => {
     });
 
     const loading = isLoading || isFetching;
-    console.log(cookies.logged_in)
 
     if (loading) {
         return <FullScreenLoader />;
