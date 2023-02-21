@@ -6,6 +6,7 @@ import { LoadingButton as _LoadingButton } from '@mui/lab';
 import { useStateContext } from '@/services/providers/StateContextProvider';
 import { useMutation } from '@tanstack/react-query';
 import { logoutUserFn } from '@/api/authApi';
+import useHandleError from '@/services/hooks/useHandleError';
 
 const LoadingButton = styled(_LoadingButton)`
   padding: 0.4rem;
@@ -28,19 +29,8 @@ const Header = () => {
             onSuccess: (data) => {
                 window.location.href = '/login';
             },
-            onError: (error) => {
-                if (Array.isArray(error.response.data.error)) {
-                    error.data.error.forEach((el) =>
-                        toast.error(el.message, {
-                            position: 'top-right',
-                        })
-                    );
-                } else {
-                    toast.error(error.response.data.message, {
-                        position: 'top-right',
-                    });
-                }
-            },
+            onError: (error) => useHandleError(error),
+
         }
     );
 
@@ -58,7 +48,7 @@ const Header = () => {
                             onClick={() => navigate('/')}
                             sx={{ cursor: 'pointer', color: '#222' }}
                         >
-                            CodevoWeb
+                            Gentis
                         </Typography>
                         <Box display='flex' sx={{ ml: 'auto' }}>
                             {!user && (
