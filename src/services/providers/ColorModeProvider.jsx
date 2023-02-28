@@ -74,7 +74,7 @@ export const ColorModeProvider = ({ children }) => {
                         },
                         basic: {
                             red: '#F65447',
-                            green: '#F65447',
+                            green: '#0A9018',
                         }                    }),
                     always: {
                         alwaysBlack: '#000000',
