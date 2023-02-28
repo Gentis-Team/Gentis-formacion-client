@@ -2,76 +2,93 @@ import React, { useState, createContext, useContext, useMemo } from "react";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 
-export const ColorModeContext = createContext({
+export const ColorModeContext = createContext( {
     toggleColorMode: () => { }
-});
+} );
 
-export const ColorModeProvider = ({ children }) => {
-    const [mode, setMode] = useState("dark");
+export const ColorModeProvider = ( { children } ) => {
+    const [ mode, setMode ] = useState( "dark" );
     const colorMode = useMemo(
-        () => ({
+        () => ( {
             toggleColorMode: () => {
-                setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+                setMode( ( prevMode ) => ( prevMode === 'light' ? 'dark' : 'light' ) );
             },
-        }),
+        } ),
         [],
     );
 
 
     const theme = useMemo(
         () =>
-            createTheme({
+            createTheme( {
                 palette: {
                     mode,
-                    ...(mode === 'light' && {
+                    ...( mode === 'light' && {
+                        blue: {
+                            500: '#00545F',
+                            400: '#16727E',
+                            300: '#1E99A9',
+                            200: '#A4E6EF',
+                            100: '#E9F9FB',
+                        },
+                        green: {
+                            500: '#78891A',
+                            400: '#9EB423',
+                            300: '#BED730',
+                            200: '#D9E887',
+                            100: '#F4F8DD',
+                        },
+                        brown: {
+                            500: '#321E1F',
+                            400: '#734547',
+                            300: '#734547',
+                            200: '#D1B3B4',
+                            100: '#F7F2F3',
+                        },
+                        basic: {
+                            white: '#FFFFFF',
+                            black: '#000000',
+                            red: '#F65447',
+                            green: '#F65447',
+                        }
+                    } ),
+                    ...( mode === 'dark' && {
                         primary: {
-                            main: '#806EDF',
+                            main: '#000000',
                         },
                         background: {
-                            default: '#F7F7FD',
-                            paper: '#fefcfe',
-                        },
-                        text: {
-                            secondary: '#1D182F',
-                        },
-                        divider: '#1D182F',
-                    }),
-                    ...(mode === 'dark' && {
-                        primary: {
-                            main: '#998BE5',
-                        },
-                        background: {
-                            default: '#1D182F',
+                            default: '#000000',
                             paper: '#231F35',
                         },
                         text: {
                             secondary: '#F7F7FD',
                         },
                         divider: '#F7F7FD',
-                    }),
-                    secondary: {
-                        main: '#f50057',
                     },
+} ),
+        secondary: {
+        main: '#f50057',
+    },
                     
                 }
             }),
-        [mode],
+[ mode ],
     );
 
-    return (
-        <ColorModeContext.Provider value={colorMode}>
-            <ThemeProvider theme={theme}>
-                {children}
-            </ThemeProvider>
-        </ColorModeContext.Provider>
-    );
+return (
+    <ColorModeContext.Provider value={ colorMode }>
+        <ThemeProvider theme={ theme }>
+            { children }
+        </ThemeProvider>
+    </ColorModeContext.Provider>
+);
 };
 
 const useColorMode = () => {
-    const context = useContext(ColorModeContext);
+    const context = useContext( ColorModeContext );
 
-    if (context === undefined) {
-        throw new Error("useColorMode must be used within a ColorProvider");
+    if ( context === undefined ) {
+        throw new Error( "useColorMode must be used within a ColorProvider" );
     }
     return context;
 };
