@@ -17,6 +17,7 @@
     "@fontsource/roboto": "^4.5.8",
     "@hookform/resolvers": "^2.9.11",
     "@mui/icons-material": "^5.11.9",
+    "@mui/joy": "^5.0.0-alpha.69",
     "@mui/lab": "^5.0.0-alpha.119",
     "@mui/material": "^5.11.9",
     "@mui/styled-engine-sc": "^5.11.0",
@@ -41,11 +42,6 @@
     "zod": "^3.20.3"
   },
   "devDependencies": {
-    "@testing-library/react": "^13.4.0",
-    "@types/react": "^18.0.27",
-    "@types/react-dom": "^18.0.10",
-    "@vitejs/plugin-react-swc": "^3.0.0",
-    "jest": "^29.4.2",
     "@babel/core": "^7.21.0",
     "@storybook/addon-actions": "^6.5.16",
     "@storybook/addon-essentials": "^6.5.16",
@@ -54,10 +50,12 @@
     "@storybook/builder-vite": "^0.4.2",
     "@storybook/react": "^6.5.16",
     "@storybook/testing-library": "^0.0.13",
+    "@testing-library/react": "^13.4.0",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react-swc": "^3.0.0",
     "babel-loader": "^8.3.0",
+    "jest": "^29.4.2",
     "vite": "^4.1.0"
   }
 }
