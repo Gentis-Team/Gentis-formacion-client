@@ -24,34 +24,61 @@ export const ColorModeProvider = ({ children }) => {
                 palette: {
                     mode,
                     ...(mode === 'light' && {
-                        primary: {
-                            main: '#806EDF',
+                        blue: {
+                            500: '#00545F',
+                            400: '#16727E',
+                            300: '#1E99A9',
+                            200: '#A4E6EF',
+                            100: '#E9F9FB',
                         },
-                        background: {
-                            default: '#F7F7FD',
-                            paper: '#fefcfe',
+                        green: {
+                            500: '#78891A',
+                            400: '#9EB423',
+                            300: '#BED730',
+                            200: '#D9E887',
+                            100: '#F4F8DD',
                         },
-                        text: {
-                            secondary: '#1D182F',
+                        brown: {
+                            500: '#321E1F',
+                            400: '#734547',
+                            300: '#734547',
+                            200: '#D1B3B4',
+                            100: '#F7F2F3',
                         },
-                        divider: '#1D182F',
-                    }),
+                        basic: {
+                            red: '#F65447',
+                            green: '#F65447',
+                        },
+                    } ),
                     ...(mode === 'dark' && {
-                        primary: {
-                            main: '#998BE5',
+                        blue: {
+                            500: '#00545F',
+                            400: '#16727E',
+                            300: '#1E99A9',
+                            200: '#A4E6EF',
+                            100: '#E9F9FB',
                         },
-                        background: {
-                            default: '#1D182F',
-                            paper: '#231F35',
-                            filter: 'blue'
+                        green: {
+                            500: '#78891A',
+                            400: '#9EB423',
+                            300: '#BED730',
+                            200: '#D9E887',
+                            100: '#F4F8DD',
                         },
-                        text: {
-                            secondary: '#F7F7FD',
+                        brown: {
+                            500: '#321E1F',
+                            400: '#734547',
+                            300: '#734547',
+                            200: '#D1B3B4',
+                            100: '#F7F2F3',
                         },
-                        divider: '#F7F7FD',
-                    }),
-                    secondary: {
-                        main: '#f50057',
+                        basic: {
+                            red: '#F65447',
+                            green: '#F65447',
+                        }                    }),
+                    always: {
+                        alwaysBlack: '#000000',
+                        alwaysWhite: '#FFFFFF',
                     },
                     
                 }
