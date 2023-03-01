@@ -1,9 +1,14 @@
-import React from 'react'
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
+import Stack from '@mui/material/Stack';
 
-const ButtonSubmit = () => {
+export default function ButtonSubmit(props) {
   return (
-    <div>Button</div>
-  )
+    <Stack sx={props.styleButtonSubmit} direction="row" spacing={2}>
+      <Button variant="contained" color="success" endIcon={<SendIcon />}>
+        {props.buttonName}
+      </Button>
+    </Stack>
+  );
 }
-
-export default ButtonSubmit
