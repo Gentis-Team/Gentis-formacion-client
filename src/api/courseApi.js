@@ -13,6 +13,7 @@ export const getCourseFn = async (id) => {
 };
 
 export const getFilteredCoursesFn = async (formData) => {
+    console.log(formData)
     const response = await authApi.post(`/api/courses/filter`, formData);
     return response.data;
 };
@@ -30,7 +31,6 @@ export const updateCourseFn = async ({
     id,
     formData,
 }) => {
-    console.log('formData', formData);
     const response = await authApi.put(`/api/courses/${id}`, formData, {
         //headers: {'Content-Type': 'multipart/form-data',},
     });

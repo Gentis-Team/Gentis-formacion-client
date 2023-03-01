@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, ButtonGroup, Grid} from '@mui/material';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { getAllCoursesFn } from '@/api/courseApi';
+import { getFilteredCoursesFn } from '@/api/courseApi';
 import FullScreenLoader from '@/components/layout/loaders/FullScreenLoader';
 import CourseItem from '@/components/layout/content/CourseItem';
 import Message from '@/components/messages/Message';
@@ -11,12 +11,13 @@ import { useCoursesContext } from '@/services/providers/CoursesContextProvider';
 import useHandleError from '@/services/hooks/useHandleError';
 import {useQueryLocations, useQueryRequirements, useQueryGroups, useQueryCategories }from '@/services/hooks/useQuery';
 import { useFiltersContext } from '@/services/providers/FiltersContextProvider';
+import { getAllCoursesFn } from '../../api/courseApi';
 
 const Home = () => {
  /* A hook that is used to get the courses from the database. */
   const coursesContext = useCoursesContext();
   const filtersContext = useFiltersContext();
-
+  const queryClient = useQueryClient();
   const [query, setQuery] = useState(null);
   const { isLoading, data: courses } = useQuery(['courses'], () => getAllCoursesFn(), {
     
@@ -27,6 +28,7 @@ const Home = () => {
     },
     onError: (error) => useHandleError(error),
   });
+
 
   useQueryLocations();
   useQueryRequirements();

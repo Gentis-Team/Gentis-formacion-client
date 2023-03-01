@@ -15,6 +15,13 @@ import { useFiltersContext } from '@/services/providers/FiltersContextProvider';
 import { useFilteredCoursesContext } from '../../../services/providers/FilteredCoursesProvider';
 import { useCoursesContext } from '@/services/providers/CoursesContextProvider';
 
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { getFilteredCoursesFn } from '@/api/courseApi';
+import { toast } from 'react-toastify';
+
+
+
+
 const durations = [
   {id: 1, description: 'Cursos breus (xx-xx hores)', name: 'short'},
   {id: 2, description: 'Cursos mitjans (xx-xx hores)', name: 'medium'},
@@ -27,15 +34,44 @@ const Filters = (props) => {
   const filtersContext = useFiltersContext();
   const filteredCoursesContext = useFilteredCoursesContext();
   const coursesContext = useCoursesContext();
+  const queryClient = useQueryClient();
+
+  const { isLoading, mutate: fetchFilterCourses } = useMutation(
+    ({ formData }) =>
+      getFilteredCoursesFn({ formData }),
+    {
+      select: (data) => data.courses,
+      onSuccess: (data) => {
+        filteredCoursesContext.dispatch({ type: 'SET_FILTERED_COURSES', payload: data });
+        toast.success('Courses filtered successfully');
+      },
+      onError: (error) => useHandleError(error),
+    }
+  );
   
 
   const [selectedLocations, setSelectedLocations] = React.useState({});
-  const [selectedRequirtement, setSelectedRequirtement] = React.useState('Sense titulacions');
+  const [selectedRequiretement, setSelectedRequiretement] = React.useState('Sense titulacions');
   const [selectedDuration, setSelectedDuration] = React.useState({
     short: false,
     medium: false,
     long: false
   });
+
+  const [selectedInputs, setSelectedInputs] = React.useState({
+    locations: selectedLocations,
+    requirement: selectedRequiretement,
+    duration: selectedDuration
+  });
+
+  useEffect(() => {
+    setSelectedInputs({
+      locations: selectedLocations,
+      requirement: selectedRequiretement,
+      duration: selectedDuration
+    })
+  }, [])
+  
 
 
   const handleRequirementChange = (event) => {
@@ -73,25 +109,22 @@ const Filters = (props) => {
       //filtersContext.dispatch({ type: 'SET_FILTERS', payload: selectedInputs });
 
         
-          const locationsFound = Object.entries(selectedLocations).filter(obj => obj[1])
-           
-
-          console.log(locationsFound)
-          const filteredLocations = locationsFound.map(loc => {
-            return locationsContext.state.locations.filter(location => location.location.toLowerCase() === location[0]);
-          })
-
-          console.log(filteredLocations)
-          
-          const filteredCourses = coursesContext.state.courses.filter(course => course.center.location_id === filteredLocations[0][0].id)
-        
-        
-      
+          // const locationsFound = Object.entries(selectedLocations).filter(obj => obj[1])
+          // const filteredLocations = locationsFound.map(loc => {
+          //   return locationsContext.state.locations.filter(location => location.location.toLowerCase() === location[0]);
+          // })          
+          // const filteredCourses = coursesContext.state.courses.filter(course => course.center.location_id === filteredLocations[0][0].id)
       //filteredCoursesContext.dispatch({ type: 'SET_FILTERED_COURSES', payload: selectedInputs });
 
-      props.handleClose(false)
+      filterCourses(selectedInputs)
   };
 
+
+const filterCourses = (formData) => { 
+  filtersContext.dispatch({ type: 'SET_FILTERS', payload: formData });
+  fetchFilterCourses({ formData });
+  props.handleClose(false)
+}
 
   return (
     <React.Fragment>
@@ -100,7 +133,7 @@ const Filters = (props) => {
             <FilterLocations locations={locationsContext.state.locations} onChange={handleLocationsChange}/>
             <FilterRequirements 
               requirements={requirementsContext.state.requirements} 
-              value={selectedRequirtement} 
+              value={selectedRequiretement} 
               onChange={handleRequirementChange}
             />
             <FilterDuration durations={durations} onChange={handleDurationChange}/>
