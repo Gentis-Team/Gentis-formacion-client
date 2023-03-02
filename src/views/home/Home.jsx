@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button, ButtonGroup, Grid} from '@mui/material';
+import { Box, Button, ButtonGroup, Grid, useMediaQuery, useTheme} from '@mui/material';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { getAllCoursesFn } from '@/api/courseApi';
 import FullScreenLoader from '@/components/layout/loaders/FullScreenLoader';
@@ -11,8 +11,12 @@ import { useCoursesContext } from '@/services/providers/CoursesContextProvider';
 import useHandleError from '@/services/hooks/useHandleError';
 import {useQueryLocations, useQueryRequirements, useQueryGroups, useQueryCategories }from '@/services/hooks/useQuery';
 import { useFiltersContext } from '@/services/providers/FiltersContextProvider';
+import Filters from '@/components/Navigation/poppers/Filters'
+
 
 const Home = () => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('md'));
  /* A hook that is used to get the courses from the database. */
   const coursesContext = useCoursesContext();
   const filtersContext = useFiltersContext();
@@ -67,10 +71,12 @@ const Home = () => {
       <Box sx={{ py: 2 }}>
         <Search onSearch={handleOnSearch} onClear={handleOnClear} items={courses} />
       </Box>
-      <ButtonGroup variant="contained" aria-label="outlined primary button group">
-        <Button onClick={handleFilterClick('bottom-start')}>Filtra els cursos</Button>
-        <Button onClick={handleFilterClick('bottom-end')}>{filtersContext.state.filters !== null ? filtersContext.state.filters.requirements : 'no va'}</Button>
-      </ButtonGroup>
+      {!matches && (
+        <ButtonGroup variant="contained" aria-label="outlined primary button group">
+          <Button onClick={handleFilterClick('bottom-start')}>Filtra els cursos</Button>
+          <Button onClick={handleFilterClick('bottom-end')}>{filtersContext.state.filters !== null ? filtersContext.state.filters.requirements : 'no va'}</Button>
+        </ButtonGroup>
+      )}
       <FilterPopper handleClose={setOpen} open={open} anchorEl={anchorEl} placement={placement}/>
       {courses?.length === 0 || query?.length === 0 ? (
         <Box maxWidth='sm' sx={{ mx: 'auto', py: '5rem' }}>
@@ -79,8 +85,11 @@ const Home = () => {
           </Message>
         </Box>
       ) : (
-        <Grid container sx={{display: 'flex', justifyContent: 'end'}}>
-          <Grid item container xs={12} lg={6} spacing={2}>
+        <Grid container>
+          {matches && (
+            <Filters/>
+          )}
+          <Grid item container xs={12} md={6} spacing={2}>
             {!query ? courses?.map((course) => (
               <CourseItem key={course.id} course={course} />
             ))
