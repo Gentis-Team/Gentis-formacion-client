@@ -13,8 +13,8 @@ import { signUpUserFn } from '@/api/authApi';
 
 const LoadingButton = styled(_LoadingButton)`
   padding: 0.6rem 0;
-  background-color: #f9d13e;
-  color: #2363eb;
+
+
   font-weight: 500;
 
   &:hover {
@@ -25,7 +25,7 @@ const LoadingButton = styled(_LoadingButton)`
 
 const LinkItem = styled(Link)`
   text-decoration: none;
-  color: #2363eb;
+
   &:hover {
     text-decoration: underline;
   }
@@ -107,7 +107,7 @@ const RegisterPage = () => {
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100vh',
-        backgroundColor: '#2363eb',
+        backgroundColor: 'always.alwaysWhite',
       }}
     >
       <Box
@@ -122,14 +122,14 @@ const RegisterPage = () => {
           textAlign='center'
           component='h1'
           sx={{
-            color: '#f9d13e',
+            color: 'always.alwaysBlack',
             fontSize: { xs: '2rem', md: '3rem' },
             fontWeight: 600,
             mb: 2,
             letterSpacing: 1,
           }}
         >
-          Welcome to CodevoWeb!
+          Nou Admin
         </Typography>
         <Typography component='h2' sx={{ color: '#e5e7eb', mb: 2 }}>
           Sign Up To Get Started!
@@ -144,36 +144,56 @@ const RegisterPage = () => {
             maxWidth='27rem'
             width='100%'
             sx={{
-              backgroundColor: '#e5e7eb',
+              backgroundColor: 'green.100',
               p: { xs: '1rem', sm: '2rem' },
               borderRadius: 2,
             }}
           >
-            <FormInput name='name' label='Full Name' />
-            <FormInput name='email' label='Email Address' type='email' />
-            <FormInput name='phone' label='Phone number' />
-            <FormInput name='role' label='Role' />
-            <FormInput name='password' label='Password' type='password' />
+            <FormInput name='name' label='Nom' />
+            <FormInput name='name' label='Cognoms' />
+            <FormInput name='role' label='D.N.I' />
+            <FormInput name='email' label='Email' type='email' />
+            <FormInput name='password' label='Contrasenya' type='password' />
             <FormInput
               name='passwordConfirm'
-              label='Confirm Password'
+              label='Confirmar contrasenya'
               type='password'
             />
-            <Typography sx={{ fontSize: '0.9rem', mb: '1rem' }}>
-              Already have an account?{' '}
-              <LinkItem to='/login'>Login Here</LinkItem>
+            <Typography sx={{ fontSize: '0.9rem', mb: '1rem', color:'always.alwaysBlack'}}>
+              Ja tens compte?{' '}Entra
+              <LinkItem to='/login'> aquí</LinkItem>
             </Typography>
 
             <LoadingButton
               variant='contained'
-              sx={{ mt: 1 }}
+              sx={{ mt: 1, backgroundColor:'green.400', borderRadius: 4 }}
               fullWidth
               disableElevation
               type='submit'
               loading={isLoading}
             >
-              Sign Up
+              Desa
             </LoadingButton>
+                        
+            <Box
+              mt={4}
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'row',
+                backgroundColor: 'always.alwaysWhite',
+                borderRadius: 2,
+              }}>
+                <Typography sx={{ fontSize: '0.9rem', m: '1rem'}}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32"  height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M14.6666 9.33329H17.3333V12H14.6666V9.33329ZM14.6666 14.6666H17.3333V22.6666H14.6666V14.6666ZM16 2.66663C8.63996 2.66663 2.66663 8.63996 2.66663 16C2.66663 23.36 8.63996 29.3333 16 29.3333C23.36 29.3333 29.3333 23.36 29.3333 16C29.3333 8.63996 23.36 2.66663 16 2.66663ZM16 26.6666C10.12 26.6666 5.33329 21.88 5.33329 16C5.33329 10.12 10.12 5.33329 16 5.33329C21.88 5.33329 26.6666 10.12 26.6666 16C26.6666 21.88 21.88 26.6666 16 26.6666Z" fill="#78891A"/>
+                </svg>
+                </Typography>
+                <Typography sx={{ fontSize: '0.9rem', m: '1rem'}}>
+                            El nou administrador rebrá un email amb una contrasenya temporanea. Aquí el llistat dels administradors.
+                </Typography>                            
+            </Box>
           </Box>
         </FormProvider>
       </Box>

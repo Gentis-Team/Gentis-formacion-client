@@ -113,7 +113,6 @@ Add additional notes about how to deploy this on a live system.
 - [@ecp12](https://github.com/ecp12)
 - [@adriansunye](https://github.com/adriansunye)
 
-
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 
 - Hat tip to anyone whose code was used

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button, ButtonGroup, Grid, useMediaQuery, useTheme} from '@mui/material';
+import { Box, Button, ButtonGroup, Grid, useMediaQuery, useTheme, styled} from '@mui/material';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { getAllCoursesFn } from '@/api/courseApi';
+import { getFilteredCoursesFn } from '@/api/courseApi';
 import FullScreenLoader from '@/components/layout/loaders/FullScreenLoader';
 import CourseItem from '@/components/layout/content/CourseItem';
 import Message from '@/components/messages/Message';
@@ -12,15 +12,19 @@ import useHandleError from '@/services/hooks/useHandleError';
 import {useQueryLocations, useQueryRequirements, useQueryGroups, useQueryCategories }from '@/services/hooks/useQuery';
 import { useFiltersContext } from '@/services/providers/FiltersContextProvider';
 import Filters from '@/components/Navigation/poppers/Filters'
+import { getAllCoursesFn } from '../../api/courseApi';
 
 
+const SButton = styled(Button)({
+  backgroundColor: '#BED730',
+})
 const Home = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
  /* A hook that is used to get the courses from the database. */
   const coursesContext = useCoursesContext();
   const filtersContext = useFiltersContext();
-
+  const queryClient = useQueryClient();
   const [query, setQuery] = useState(null);
   const { isLoading, data: courses } = useQuery(['courses'], () => getAllCoursesFn(), {
     
@@ -31,6 +35,7 @@ const Home = () => {
     },
     onError: (error) => useHandleError(error),
   });
+
 
   useQueryLocations();
   useQueryRequirements();
@@ -71,12 +76,14 @@ const Home = () => {
       <Box sx={{ py: 2 }}>
         <Search onSearch={handleOnSearch} onClear={handleOnClear} items={courses} />
       </Box>
+
       {!matches && (
         <ButtonGroup variant="contained" aria-label="outlined primary button group">
           <Button onClick={handleFilterClick('bottom-start')}>Filtra els cursos</Button>
           <Button onClick={handleFilterClick('bottom-end')}>{filtersContext.state.filters !== null ? filtersContext.state.filters.requirements : 'no va'}</Button>
         </ButtonGroup>
       )}
+
       <FilterPopper handleClose={setOpen} open={open} anchorEl={anchorEl} placement={placement}/>
       {courses?.length === 0 || query?.length === 0 ? (
         <Box maxWidth='sm' sx={{ mx: 'auto', py: '5rem' }}>
