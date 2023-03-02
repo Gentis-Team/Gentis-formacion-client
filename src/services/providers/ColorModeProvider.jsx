@@ -41,7 +41,6 @@ export const ColorModeProvider = ( { children } ) => {
                         },
                     } ),
                     // ...( mode === 'dark' && {
-
                     // } ),
                 },
                 typography: {
