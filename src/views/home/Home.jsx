@@ -85,7 +85,7 @@ const Home = () => {
         </Box>
       ) : (
         <Grid container sx={{display: 'flex', justifyContent: 'end'}}>
-          <Grid item container xs={12} lg={6} spacing={2}>
+          <Grid item container xs={12} lg={8} spacing={2}>
             {!query ? courses?.map((course) => (
               <CourseItem key={course.id} course={course} />
             ))
