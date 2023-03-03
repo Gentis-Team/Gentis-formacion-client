@@ -34,6 +34,8 @@ import { useStateContext } from '@/services/providers/StateContextProvider';
 import InfoIcon from '@mui/icons-material/Info';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import SettingsMenu from './SettingsMenu';
+import ReactWhatsapp from 'react-whatsapp';
+import { Link } from 'react-router-dom';
 
 const SERVER_ENDPOINT = import.meta.env.VITE_REACT_APP_SERVER_ENDPOINT;
 
@@ -137,7 +139,7 @@ const CourseItem = ({ course }) => {
                         </Tooltip>
                         <Tooltip title="Posat en contacte amb nosaltres" placement="bottom">
                             <IconButton aria-label="Posat en contacte amb nosaltres utilitzant Whatsapp">
-                                <WhatsAppIcon />
+                            <a target="_blank" href="https://wa.me/34693237337"><WhatsAppIcon/></a>
                             </IconButton>
                         </Tooltip>
 

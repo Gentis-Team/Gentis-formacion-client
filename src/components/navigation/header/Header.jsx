@@ -22,8 +22,7 @@ import { useMutation } from '@tanstack/react-query';
 import { logoutUserFn } from '@/api/authApi';
 import useHandleError from '@/services/hooks/useHandleError';
 import { AccountCircle } from '@mui/icons-material';
-
-
+import { withStyles } from '@mui/styles';
 
 
 const drawerWidth = 240;
@@ -78,8 +77,8 @@ function DrawerAppBar(props) {
 
     return (
         <Box sx={{ display: 'flex' }}>
-            <CssBaseline />
-            <AppBar component="nav" sx={{display: 'flex', flexDirection: 'row'}}>
+           <CssBaseline/>
+            <AppBar component="nav" sx={{display: 'flex', flexDirection: 'row'}} >
                     <IconButton 
                         aria-label="arrow" 
                         size="large"

@@ -1,4 +1,4 @@
-import {Box} from '@mui/material';
+import {Box, Button} from '@mui/material';
 import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 
@@ -129,7 +129,7 @@ const filterCourses = (formData) => {
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', flexDirection:'column'}} component={'form'} onSubmit={handleSubmit}>
-        <FormControl component="fieldset" variant="standard">
+        <FormControl component="fieldset" variant="standard" >
             <FilterLocations locations={locationsContext.state.locations} onChange={handleLocationsChange}/>
             <FilterRequirements 
               requirements={requirementsContext.state.requirements} 
@@ -139,11 +139,12 @@ const filterCourses = (formData) => {
             <FilterDuration durations={durations} onChange={handleDurationChange}/>
         </FormControl>
         <LoadingButton
-              sx={{ py: '0.8rem', backgroundColor: '#2363eb' }}
+              sx={{ py: '0.8rem', backgroundColor: 'red', color:'#000' }}
               type='submit'
             >
               Cerca els cursos 
             </LoadingButton>
+            <Button sx={{ bgcolor: '#000000'}}></Button>
       </Box>
     </React.Fragment>
   )
