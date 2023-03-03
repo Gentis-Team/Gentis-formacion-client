@@ -92,11 +92,16 @@ const Home = () => {
           </Message>
         </Box>
       ) : (
+
+        <Grid container sx={{display: 'flex', justifyContent: 'end'}}>
+          <Grid item container xs={12} lg={8} spacing={2}>
+
         <Grid container>
           {matches && (
             <Filters/>
           )}
           <Grid item container xs={12} md={6} spacing={2}>
+
             {!query ? courses?.map((course) => (
               <CourseItem key={course.id} course={course} />
             ))
