@@ -14,7 +14,8 @@ import { useFiltersContext } from '@/services/providers/FiltersContextProvider';
 import { getAllCoursesFn } from '../../api/courseApi';
 
 const SButton = styled(Button)({
-  backgroundColor: '#BED730',
+  backgroundColor: '#00545F',
+  color: '#BED730'
 })
 const Home = () => {
  /* A hook that is used to get the courses from the database. */
@@ -72,9 +73,10 @@ const Home = () => {
       <Box sx={{ py: 2 }}>
         <Search onSearch={handleOnSearch} onClear={handleOnClear} items={courses} />
       </Box>
+      <Grid></Grid>
       <ButtonGroup variant="contained" aria-label="outlined primary button group">
         <SButton sx onClick={handleFilterClick('bottom-start')}>Filtra els cursos</SButton>
-        <SButton onClick={handleFilterClick('bottom-end')}>Ordena</SButton>
+        <SButton onClick={handleFilterClick('bottom-end')}>Ordena per</SButton>
       </ButtonGroup>
       <FilterPopper handleClose={setOpen} open={open} anchorEl={anchorEl} placement={placement}/>
       {courses?.length === 0 || query?.length === 0 ? (
