@@ -5,6 +5,7 @@ import RequireUser from '@/guards/RequireUser';
 import HomePage from '@/views/home/Home';
 import LoginPage from '@/views/login/Login';
 import ProfilePage from '@/views/profile/Profile';
+import NewCoursePage from '../views/admin/NewCoursePage';
 
 const Loadable =
     (Component) => (props) =>
@@ -30,6 +31,10 @@ const authRoutes = {
         {
             path: 'register',
             element: <RegisterPage />,
+        },
+        {
+            path: 'create',
+            element: <NewCoursePage />,
         },
     ],
 };

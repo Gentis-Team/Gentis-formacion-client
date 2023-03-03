@@ -16,7 +16,8 @@ import { getAllCoursesFn } from '../../api/courseApi';
 
 
 const SButton = styled(Button)({
-  backgroundColor: '#BED730',
+  backgroundColor: '#00545F',
+  color: '#BED730'
 })
 const Home = () => {
   const theme = useTheme();
@@ -77,13 +78,13 @@ const Home = () => {
         <Search onSearch={handleOnSearch} onClear={handleOnClear} items={courses} />
       </Box>
 
+
       {!matches && (
         <ButtonGroup variant="contained" aria-label="outlined primary button group">
-          <Button onClick={handleFilterClick('bottom-start')}>Filtra els cursos</Button>
-          <Button onClick={handleFilterClick('bottom-end')}>{filtersContext.state.filters !== null ? filtersContext.state.filters.requirements : 'no va'}</Button>
+          <SButton onClick={handleFilterClick('bottom-start')}>Filtra els cursos</SButton>
+         <SButton onClick={handleFilterClick('bottom-end')}>{filtersContext.state.filters !== null ? filtersContext.state.filters.requirements : 'no va'}</SButton>
         </ButtonGroup>
       )}
-
       <FilterPopper handleClose={setOpen} open={open} anchorEl={anchorEl} placement={placement}/>
       {courses?.length === 0 || query?.length === 0 ? (
         <Box maxWidth='sm' sx={{ mx: 'auto', py: '5rem' }}>

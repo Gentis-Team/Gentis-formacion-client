@@ -9,7 +9,6 @@ export default function TimeInput(props) {
   return (
     <Stack 
     direction='row'
-      component="form" 
       sx={props.sxTime}
     >
       <TextField

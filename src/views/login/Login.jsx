@@ -13,6 +13,8 @@ import { getMeFn, loginUserFn } from '@/api/authApi';
 import { useStateContext } from '@/services/providers/StateContextProvider';
 import useHandleError from '@/services/hooks/useHandleError';
 import { borderBottomColor } from '@mui/system';
+import { useCategoriesContext } from '@/services/providers/CategoriesContextProvider';
+
 
 const LoadingButton = styled(_LoadingButton)`
   padding: 0.6rem 0;
@@ -49,7 +51,9 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+
   const from = ((location.state)?.from.pathname) || '/';
+
 
   const methods = useForm({
     resolver: zodResolver(loginSchema),
