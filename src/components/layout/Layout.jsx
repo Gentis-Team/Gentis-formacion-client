@@ -1,6 +1,7 @@
 import React from 'react'
 import  { Outlet } from 'react-router-dom'
 import Header from '@/components/navigation/header/Header';
+import Footer from '../Navigation/footer/Footer';
 
 
 const Layout = ({children}) => {
@@ -9,6 +10,7 @@ const Layout = ({children}) => {
       <Header />
       <Outlet />
         {children}
+      <Footer/>
     </React.Fragment>
   )
 }

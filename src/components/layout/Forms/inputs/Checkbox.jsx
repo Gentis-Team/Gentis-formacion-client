@@ -9,10 +9,11 @@ export default function Checkboxes(props) {
   return (
     <div>
      <FormGroup  sx={props.checkStile}>
-      <FormControlLabel control={<Checkbox  sx={{color: "black",
+      <FormControlLabel  control={<Checkbox sx={{color: "black",
                       "&.Mui-checked": {
                         color: "#BED730",
-                      }, }} />}  label={props.name}/>
+                      }, }} />}  label={props.name}
+                      />
     </FormGroup> 
     </div>
   );
