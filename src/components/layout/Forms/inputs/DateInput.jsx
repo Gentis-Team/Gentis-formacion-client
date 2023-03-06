@@ -7,19 +7,14 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 
 export default function MaterialUIPickers(props) {
-  const [value, setValue] = React.useState(dayjs);
-
-  const handleChange = (newValue) => {
-    setValue(newValue);
-  };
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Stack sx={props.sxDate} >
         <MobileDatePicker 
-          label={props.titulDate}
+          name={props.name}
           inputFormat="MM/DD/YYYY"
-          value={value}
-          onChange={handleChange}
+          value={props.value}
+          onChange={props.onChange}
           renderInput={(params) => <TextField {...params} />}
           
         />

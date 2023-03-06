@@ -19,11 +19,8 @@ export const getFilteredCoursesFn = async (formData) => {
 };
 
 export const createCourseFn = async (formData) => {
-    const response = await authApi.post(`/api/courses`, formData, {
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        },
-    });
+    console.log(formData)
+    const response = await authApi.post(`/api/courses`, formData);
     return response.data;
 };
 

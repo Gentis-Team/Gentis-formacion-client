@@ -20,6 +20,7 @@ import {
   import { updateCourseFn } from '@/api/courseApi';
   import FileUploader from '@/components/layout/forms/inputs/FileUploader';
   import useHandleError from '@/services/hooks/useHandleError';
+import { bgcolor } from '@mui/system';
   
   
   const updateCourseSchema = object({
@@ -88,10 +89,10 @@ import {
     };
   
     return (
-      <Box>
+      <Box sx={{ bgcolor:'white' }}>
         <Box display='flex' justifyContent='space-between' sx={{ mb: 3 }}>
           <Typography variant='h5' component='h1'>
-            Edit Course
+            Editar el curs
           </Typography>
           {isLoading && <CircularProgress size='1rem' color='primary' />}
         </Box>
@@ -105,13 +106,15 @@ import {
              <TextField
               label='Code'
               fullWidth
-              sx={{ mb: '1rem' }}
+              sx={{ mb: '1rem', 
+              bgcolor:'#E9F9FB'}}
               {...methods.register('code')}
             />
             <TextField
               label='Title'
               fullWidth
-              sx={{ mb: '1rem' }}
+              sx={{ mb: '1rem', 
+              bgcolor:'#E9F9FB' }}
               {...methods.register('name')}
             />
             <Controller
@@ -125,11 +128,13 @@ import {
                   minRows={8}
                   style={{
                     width: '100%',
+                    backgroundColor:'#E9F9FB',
                     border: '1px solid #c8d0d4',
+                    borderRadius: '4px',
                     fontFamily: 'Roboto, sans-serif',
                     outline: 'none',
                     fontSize: '1rem',
-                    
+                    padding: '1rem',
                   }}
                 />
               )}
@@ -138,11 +143,15 @@ import {
             <LoadingButton
               variant='contained'
               fullWidth
-              sx={{ py: '0.8rem', mt: 4, backgroundColor: '#2363eb' }}
+              sx={{ py: '0.8rem', 
+              mt: 4, 
+              backgroundColor: '#9EB423',
+              borderRadius: 2,
+              }}
               type='submit'
               loading={isLoading}
             >
-              Edit Course
+              Editar
             </LoadingButton>
           </Box>
         </FormProvider>

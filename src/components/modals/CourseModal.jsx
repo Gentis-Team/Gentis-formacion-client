@@ -17,7 +17,7 @@ const MODAL_STYLES = {
   left: '50%',
   transform: 'translateX(-50%)',
   transition: 'all 300ms ease',
-  backgroundColor: 'black',
+  backgroundColor: 'white',
   overflowY: 'scroll',
   zIndex: 1000,
 };
@@ -33,7 +33,7 @@ const CourseModal = ({
       <div style={OVERLAY_STYLES} onClick={() => setOpenCourseModal(false)} />
       <Container
         maxWidth='sm'
-        sx={{ p: '2rem 1rem', borderRadius: 1 }}
+        sx={{ p: '2rem 1rem', border: '2px solid #c8d0d4', }}
         style={MODAL_STYLES}
       >
         {children}

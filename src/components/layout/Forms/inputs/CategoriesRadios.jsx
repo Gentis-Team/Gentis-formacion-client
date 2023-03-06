@@ -2,9 +2,9 @@ import { FormControlLabel, Radio } from '@mui/material'
 import React from 'react'
 
 const CategoriesRadios = (props) => {
+    const { value, ...otherProps } = props
     return (
         <FormControlLabel 
-            
             control={
                 <Radio
                     sx={{
@@ -13,9 +13,10 @@ const CategoriesRadios = (props) => {
                             color: "#BED730",
                         },
                     }}
+                    value={value}
                 />
             }
-            {...props}
+            {...otherProps}
         />
     )
 }
