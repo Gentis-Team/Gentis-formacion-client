@@ -144,7 +144,6 @@ const filterCourses = (formData) => {
             >
               Cerca els cursos 
             </LoadingButton>
-            <Button sx={{ bgcolor: '#000000'}}></Button>
       </Box>
     </React.Fragment>
   )
