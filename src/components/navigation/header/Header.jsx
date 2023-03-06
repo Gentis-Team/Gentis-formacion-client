@@ -1,33 +1,50 @@
-import { AppBar, Box, Container, Toolbar, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import * as React from 'react';
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { LoadingButton as _LoadingButton } from '@mui/lab';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
+import Divider from '@mui/material/Divider';
+import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+import MenuIcon from '@mui/icons-material/Menu';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useStateContext } from '@/services/providers/StateContextProvider';
+import { LoadingButton } from '@mui/lab';
 import { useMutation } from '@tanstack/react-query';
 import { logoutUserFn } from '@/api/authApi';
 import useHandleError from '@/services/hooks/useHandleError';
+import { AccountCircle } from '@mui/icons-material';
+import { withStyles } from '@mui/styles';
 
-const LoadingButton = styled(_LoadingButton)`
-  padding: 0.4rem;
-  color: #222;
-  font-weight: 500;
 
-  &:hover {
-    transform: translateY(-2px);
-  }
-`; 
+const drawerWidth = 240;
+const navItems = ['Menu1', 'Menu2' , 'Menu3'];
 
-const Header = () => {
+function DrawerAppBar(props) {
     const navigate = useNavigate();
+    const { window } = props;
+    const [mobileOpen, setMobileOpen] = React.useState(false);
+
     const stateContext = useStateContext();
     const user = stateContext.state.authUser;
+
+    const handleDrawerToggle = () => {
+        setMobileOpen((prevState) => !prevState);
+    };
 
     const { mutate: logoutUser, isLoading } = useMutation(
         async () => await logoutUserFn(),
         {
             onSuccess: (data) => {
-                window.location.href = '/login';
+                navigate("/login")
             },
             onError: (error) => useHandleError(error),
 
@@ -38,33 +55,63 @@ const Header = () => {
         logoutUser();
     };
 
+    const drawer = (
+        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center'}}>
+            <Typography variant="h6" sx={{ my: 2 }}>
+                Gentis
+            </Typography>
+            <Divider />
+            <List>
+                {navItems.map((item) => (
+                    <ListItem key={item} disablePadding>
+                        <ListItemButton sx={{ textAlign: 'center' }}>
+                            <ListItemText primary={item} />
+                        </ListItemButton>
+                    </ListItem>
+                ))}
+            </List>
+        </Box>
+    );
+
+    const container = window !== undefined ? () => window().document.body : undefined;
+
     return (
-        <>
-            <AppBar position='static' sx={{ backgroundColor: '#fff' }}>
-                <Container maxWidth='lg'>
-                    <Toolbar>
-                        <Typography
-                            variant='h6'
-                            onClick={() => navigate('/')}
-                            sx={{ cursor: 'pointer', color: '#222' }}
+        <Box sx={{ display: 'flex' }}>
+           <CssBaseline/>
+            <AppBar component="nav" sx={{display: 'flex', flexDirection: 'row'}} >
+                    <IconButton 
+                        aria-label="arrow" 
+                        size="large"
+                        onClick={() => navigate('/')}
+                        sx={{ display: { sm: 'none' } }}
                         >
-                            Gentis
-                        </Typography>
-                        <Box display='flex' sx={{ ml: 'auto' }}>
-                            {!user && (
-                                <>
-                                    <LoadingButton
-                                        sx={{ mr: 2 }}
-                                        onClick={() => navigate('/register')}
-                                    >
-                                        SignUp
-                                    </LoadingButton>
-                                    <LoadingButton onClick={() => navigate('/login')}>
-                                        Login
-                                    </LoadingButton>
-                                </>
-                            )}
-                            {user && (
+                        <ArrowBackIosIcon />
+                    </IconButton>
+                    <Typography
+                        variant="h6"
+                        component="div"
+                        sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', ml: 4}}
+                    >
+                        Gentis
+                    </Typography>
+                <Toolbar sx={{display: 'flex', justifyContent: 'end'}}>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        edge="start"
+                        onClick={handleDrawerToggle}
+                        sx={{ mr: 2, display: { sm: 'none' } }}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+                        {navItems.map((item) => (
+                            <Button key={item} sx={{ color: '#fff' }}>
+                                {item}
+                            </Button>
+                        ))}
+                    </Box>
+                    {user && (
                                 <>
                                     <LoadingButton
                                         loading={isLoading}
@@ -72,17 +119,41 @@ const Header = () => {
                                     >
                                         Profile
                                     </LoadingButton>
-                                    <LoadingButton onClick={onLogoutHandler} loading={isLoading}>
-                                        Logout
+                                    <LoadingButton onClick={onLogoutHandler}>
+                                        <AccountCircle></AccountCircle>
                                     </LoadingButton>
                                 </>
                             )}
-                        </Box>
-                    </Toolbar>
-                </Container>
+                </Toolbar>
             </AppBar>
-        </>
+            <Box component="nav">
+                <Drawer
+                    container={container}
+                    variant="temporary"
+                    open={mobileOpen}
+                    onClose={handleDrawerToggle}
+                    anchor={'right'}
+                    ModalProps={{
+                        keepMounted: true,
+                    }}
+                    sx={{
+                        display: { xs: 'block', sm: 'none' },
+                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                    }}
+                >
+                    {drawer}
+                </Drawer>
+            </Box>
+            <Box component="main" sx={{ p: 3 }}>
+                <Toolbar />
+            </Box>
+        </Box>
     );
+}
+
+DrawerAppBar.propTypes = {
+    
+    window: PropTypes.func,
 };
 
-export default Header;
+export default DrawerAppBar;

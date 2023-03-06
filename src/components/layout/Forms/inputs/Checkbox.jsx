@@ -8,8 +8,12 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 export default function Checkboxes(props) {
   return (
     <div>
-     <FormGroup sx={props.checkStile}>
-      <FormControlLabel control={<Checkbox defaultChecked color="success" />} label={props.name}/>
+     <FormGroup  sx={props.checkStile}>
+      <FormControlLabel  control={<Checkbox sx={{color: "black",
+                      "&.Mui-checked": {
+                        color: "#BED730",
+                      }, }} />}  label={props.name}
+                      />
     </FormGroup> 
     </div>
   );

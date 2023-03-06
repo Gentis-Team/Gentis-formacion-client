@@ -6,6 +6,7 @@ import HomePage from '@/views/home/Home';
 import LoginPage from '@/views/login/Login';
 import ProfilePage from '@/views/profile/Profile';
 import SingleCourse from '@/views/course/SingleCourse';
+import NewCoursePage from '@/views/admin/NewCoursePage';
 
 const Loadable =
     (Component) => (props) =>
@@ -33,8 +34,13 @@ const authRoutes = {
             element: <RegisterPage />,
         },
         {
+
             path: 'single-course',
             element: <SingleCourse />,
+        },
+        {
+            path: 'create',
+            element: <NewCoursePage />,
         },
     ],
 };

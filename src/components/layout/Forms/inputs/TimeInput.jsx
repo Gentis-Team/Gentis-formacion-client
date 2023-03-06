@@ -8,7 +8,7 @@ import {Box} from "@mui/material";
 export default function TimeInput(props) {
   return (
     <Stack 
-      component="form" 
+    direction='row'
       sx={props.sxTime}
     >
       <TextField

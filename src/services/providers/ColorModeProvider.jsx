@@ -6,8 +6,8 @@ export const ColorModeContext = createContext( {
     toggleColorMode: () => { }
 } );
 
-export const ColorModeProvider = ( { children } ) => {
-    const [ mode, setMode ] = useState( "dark" );
+export const ColorModeProvider = ({ children }) => {
+    const [mode, setMode] = useState("light");
     const colorMode = useMemo(
         () => ( {
             toggleColorMode: () => {
@@ -23,6 +23,7 @@ export const ColorModeProvider = ( { children } ) => {
             createTheme( {
                 palette: {
                     mode,
+
                     ...( mode === 'light' && {
                         palette: {
                             type: 'light',
