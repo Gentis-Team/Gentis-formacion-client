@@ -17,27 +17,23 @@ const handleClick3 = () => {
 
 const Footer = () => {
   return (
-    <BottomNavigation sx={ {
+
+      <BottomNavigation   component="footer" sx={{
       width: '100%',
-      display: 'flex',
-      justifyContent: 'space-around',
-      backgroundColor: '#00545F',
-      color: 'white',
-      alignItems: 'center'
-    } }>
-      <Box>© Gentis 2023</Box>
-      <Button onClick={ handleClick }
-        sx={ {
-          color: 'white',
-        } }>Avís legal</Button>
-      <Button onClick={ handleClick2 }
-        sx={ {
-          color: 'white',
-        } }>Política de Privacitat</Button>
-      <Button onClick={ handleClick3 }>
-        <img src="../../public/logo-Gentis-blanc-800px-768x279 1.png" alt="Gentis" />
-      </Button>
-    </BottomNavigation>
+      
+      bottom: 0,
+        display: 'flex', 
+        justifyContent: 'space-around', 
+        backgroundColor: 'primary.main',
+        color: 'white',
+        alignItems: 'center'}}>
+        <Box>© Gentis 2023</Box>
+        
+        <Button onClick={handleClick3}>
+          <img src="../../public/logo-Gentis-blanc-800px-768x279 1.png" alt="Gentis" />
+        </Button>
+      </BottomNavigation>
+
   )
 }
 

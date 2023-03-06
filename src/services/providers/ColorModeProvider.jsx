@@ -43,45 +43,45 @@ export const ColorModeProvider = ({ children }) => {
                     // } ),
                 },
                 typography: {
-                    fontFamily: 'Open Sans',
-                    fontSize: 14,
-                    fontWeightBold: 900,
-                    fontWeightMedium: 600,
-                    fontWeightLight: 500,
-                    h1: {
-                        fontSize: 80,
-                        fontFamily: 'Kanit',
-                        fontWeight: 800,
-                        lineHeight: '5.5rem',
+                    // fontFamily: 'Open Sans',
+                    // fontSize: 14,
+                    // fontWeightBold: 900,
+                    // fontWeightMedium: 600,
+                    // fontWeightLight: 500,
+                    // h1: {
+                    //     fontSize: 80,
+                    //     fontFamily: 'Kanit',
+                    //     fontWeight: 800,
+                    //     lineHeight: '5.5rem',
                         
-                    },
-                    h2: {
-                        fontFamily: 'Kanit',
-                        fontWeight: 800,
-                        fontSize: '4.5rem',
-                        lineHeight: 1.1,
-                    },
-                    h3: {
-                        fontSize: '3.5rem',
-                        lineHeight: 1.1,
-                        fontWeight: 1000,
-                    },
-                    h4: {
-                        fontSize: '2.5rem',
-                        fontWeight: 1000,
-                    },
-                    h5: {
-                        fontSize: '0.9rem',
-                        lineHeight: 1.2,
-                        fontWeight: 800,
-                    },
-                    h6: {
-                        fontSize: '1.5rem',
-                        fontWeight: 1000,
-                    },
-                    subtitle1: {
-                        fontWeight: 700,
-                    },
+                    // },
+                    // h2: {
+                    //     fontFamily: 'Kanit',
+                    //     fontWeight: 800,
+                    //     fontSize: '4.5rem',
+                    //     lineHeight: 1.1,
+                    // },
+                    // h3: {
+                    //     fontSize: '3.5rem',
+                    //     lineHeight: 1.1,
+                    //     fontWeight: 1000,
+                    // },
+                    // h4: {
+                    //     fontSize: '2.5rem',
+                    //     fontWeight: 1000,
+                    // },
+                    // h5: {
+                    //     fontSize: '0.9rem',
+                    //     lineHeight: 1.2,
+                    //     fontWeight: 800,
+                    // },
+                    // h6: {
+                    //     fontSize: '1.5rem',
+                    //     fontWeight: 1000,
+                    // },
+                    // subtitle1: {
+                    //     fontWeight: 700,
+                    // },
 
                 },
                 shape: {

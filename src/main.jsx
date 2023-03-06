@@ -14,6 +14,7 @@ import { RequirementsContextProvider } from '@/services/providers/RequirementsCo
 import { GroupsContextProvider } from '@/services/providers/GroupsContextProviders';
 import { FiltersContextProvider } from './services/providers/FiltersContextProvider';
 import { FilteredCoursesContextProvider } from './services/providers/FilteredCoursesProvider';
+import { CentersContextProvider } from './services/providers/CentersContextProvider';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,7 +37,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <QueryClientProvider client={queryClient}>
         <Router>
           <StateContextProvider>
-
+              <CentersContextProvider>
               <CoursesContextProvider>
                 <FilteredCoursesContextProvider>
                 <LocationsContextProvider>
@@ -52,7 +53,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 </LocationsContextProvider>
                 </FilteredCoursesContextProvider>
               </CoursesContextProvider>
-            
+              </CentersContextProvider>
           </StateContextProvider>
           <ReactQueryDevtools initialisopen="{false}" />
         </Router>
