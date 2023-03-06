@@ -191,13 +191,6 @@ const LoginPage = () => {
                         borderRadius: 2,
                         border:' 2px solid #9EB423'
                         }}>
-                            <Typography sx={{ fontSize: '0.9rem', m: '0.5rem'}}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32"  height="32" viewBox="0 0 32 32" fill="none">
-                            <path d="M14.6666 9.33329H17.3333V12H14.6666V9.33329ZM14.6666 14.6666H17.3333V22.6666H14.6666V14.6666ZM16 2.66663C8.63996 2.66663 2.66663 8.63996 2.66663 16C2.66663 23.36 8.63996 29.3333 16 29.3333C23.36 29.3333 29.3333 23.36 29.3333 16C29.3333 8.63996 23.36 2.66663 16 2.66663ZM16 26.6666C10.12 26.6666 5.33329 21.88 5.33329 16C5.33329 10.12 10.12 5.33329 16 5.33329C21.88 5.33329 26.6666 10.12 26.6666 16C26.6666 21.88 21.88 26.6666 16 26.6666Z" fill="#78891A"/>
-                            </svg></Typography>
-                            <Typography sx={{ fontSize: '0.9rem', m: '0.5rem'}}>
-                            Si no tens accés pots demanar-ho<LinkItem to='/register'> aquí</LinkItem>
-                            </Typography>
                         </Box>
                 </FormProvider>
             </Box>

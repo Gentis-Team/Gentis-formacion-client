@@ -44,6 +44,9 @@ export const ColorModeProvider = ({ children }) => {
                     // ...( mode === 'dark' && {
                     // } ),
                 },
+                 primary: {
+                        main: "#00545F"
+                      },
                 typography: {
                     fontFamily: 'Open Sans',
                     fontSize: 14,
@@ -91,6 +94,7 @@ export const ColorModeProvider = ({ children }) => {
                 },
             } ),
         [ mode ],
+
     );
 
     return (
