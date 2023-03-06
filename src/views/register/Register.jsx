@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 import { useMutation } from '@tanstack/react-query';
 import { signUpUserFn } from '@/api/authApi';
 
-const LoadingButton = styled(_LoadingButton)`
+const LoadingButton = styled( _LoadingButton )`
   padding: 0.6rem 0;
 
 
@@ -23,7 +23,7 @@ const LoadingButton = styled(_LoadingButton)`
   }
 `;
 
-const LinkItem = styled(Link)`
+const LinkItem = styled( Link )`
   text-decoration: none;
 
   &:hover {
@@ -31,51 +31,51 @@ const LinkItem = styled(Link)`
   }
 `;
 
-const registerSchema = object({
-  name: string().min(1, 'Full name is required').max(100),
+const registerSchema = object( {
+  name: string().min( 1, 'Full name is required' ).max( 100 ),
   email: string()
-    .min(1, 'Email address is required')
-    .email('Email Address is invalid'),
+    .min( 1, 'Email address is required' )
+    .email( 'Email Address is invalid' ),
   phone: string()
-    .min(1, 'Phone number is required'),
+    .min( 1, 'Phone number is required' ),
   role: string()
-    .min(1, 'Role is required'),
+    .min( 1, 'Role is required' ),
   password: string()
-    .min(1, 'Password is required')
-    .min(8, 'Password must be more than 8 characters')
-    .max(32, 'Password must be less than 32 characters'),
-  passwordConfirm: string().min(1, 'Please confirm your password'),
-}).refine((data) => data.password === data.passwordConfirm, {
-  path: ['passwordConfirm'],
+    .min( 1, 'Password is required' )
+    .min( 8, 'Password must be more than 8 characters' )
+    .max( 32, 'Password must be less than 32 characters' ),
+  passwordConfirm: string().min( 1, 'Please confirm your password' ),
+} ).refine( ( data ) => data.password === data.passwordConfirm, {
+  path: [ 'passwordConfirm' ],
   message: 'Passwords do not match',
-});
+} );
 
 const RegisterPage = () => {
   const navigate = useNavigate();
 
-  const methods = useForm({
-    resolver: zodResolver(registerSchema),
-  });
+  const methods = useForm( {
+    resolver: zodResolver( registerSchema ),
+  } );
 
   // ? Calling the Register Mutation
   const { mutate, isLoading } = useMutation(
-    (userData) => signUpUserFn(userData),
+    ( userData ) => signUpUserFn( userData ),
     {
-      onSuccess(data) {
-        toast.success(data?.message);
-        navigate('/');
+      onSuccess ( data ) {
+        toast.success( data?.message );
+        navigate( '/' );
       },
-      onError(error) {
-        if (Array.isArray((error).response.data.error)) {
-          (error).response.data.error.forEach((el) =>
-            toast.error(el.message, {
+      onError ( error ) {
+        if ( Array.isArray( ( error ).response.data.error ) ) {
+          ( error ).response.data.error.forEach( ( el ) =>
+            toast.error( el.message, {
               position: 'top-right',
-            })
+            } )
           );
         } else {
-          toast.error((error).response.data.message, {
+          toast.error( ( error ).response.data.message, {
             position: 'top-right',
-          });
+          } );
         }
       },
     }
@@ -87,68 +87,68 @@ const RegisterPage = () => {
     formState: { isSubmitSuccessful },
   } = methods;
 
-  useEffect(() => {
-    if (isSubmitSuccessful) {
+  useEffect( () => {
+    if ( isSubmitSuccessful ) {
       reset();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSubmitSuccessful]);
+  }, [ isSubmitSuccessful ] );
 
-  const onSubmitHandler = (values) => {
+  const onSubmitHandler = ( values ) => {
     // ? Execute the Mutation
-    mutate(values);
+    mutate( values );
   };
 
   return (
     <Container
-      maxWidth={false}
-      sx={{
+      maxWidth={ false }
+      sx={ {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100vh',
-        backgroundColor: 'always.alwaysWhite',
-      }}
+        backgroundColor: '#fff',
+      } }
     >
       <Box
-        sx={{
+        sx={ {
           display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
+          justifyContent: 'left',
+          alignItems: 'left',
           flexDirection: 'column',
-        }}
+          mb: '2rem'
+        } }
       >
         <Typography
-          textAlign='center'
+          textAlign='left'
           component='h1'
-          sx={{
-            color: 'always.alwaysBlack',
+          sx={ {
+            color: '#000',
             fontSize: { xs: '2rem', md: '3rem' },
-            fontWeight: 600,
+            fontWeight: 800,
+            mt: 2,
             mb: 2,
-            letterSpacing: 1,
-          }}
+            letterSpacing: -1,
+          } }
         >
           Nou Admin
         </Typography>
-        <Typography component='h2' sx={{ color: '#e5e7eb', mb: 2 }}>
-          Registra't per a poder accedir a la plataforma!
-        </Typography>
 
-        <FormProvider {...methods}>
+        <FormProvider { ...methods }>
           <Box
             component='form'
-            onSubmit={handleSubmit(onSubmitHandler)}
+            onSubmit={ handleSubmit( onSubmitHandler ) }
             noValidate
             autoComplete='off'
             maxWidth='27rem'
             width='100%'
-            sx={{
+            sx={ {
               backgroundColor: '#F4F8DD',
-              p: { xs: '1rem', sm: '2rem' },
-              borderRadius: 2,
-              border:' 2px solid #9EB423'
-            }}
+              p: '1rem',
+              borderRadius: '1rem',
+              boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.1)',
+              border: '2px solid #9eb424',
+            } }
           >
             <FormInput name='name' label='Nom' />
             <FormInput name='name' label='Cognoms' />
@@ -160,43 +160,57 @@ const RegisterPage = () => {
               label='Confirmar contrasenya'
               type='password'
             />
-            <Typography sx={{ fontSize: '0.9rem', mb: '1rem', color:'always.alwaysBlack'}}>
-              Ja tens compte?{' '}Entra
-              <LinkItem to='/login'> aquí</LinkItem>
-            </Typography>
 
             <LoadingButton
               variant='contained'
-              sx={{ mt: 1, backgroundColor:'#9EB423', borderRadius: 4 }}
+              sx={ {
+                mt: 1,
+                backgroundColor: '#BED730',
+                borderRadius: '1rem',
+              } }
               fullWidth
               disableElevation
               type='submit'
-              loading={isLoading}
+              loading={ isLoading }
             >
-              Desar
+              Desa
             </LoadingButton>
-          </Box>
-                                  
-          <Box
-              mt={4}
-              sx={{
+            <Box
+              mt={ 4 }
+              sx={ {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
                 flexDirection: 'row',
-                backgroundColor: 'always.alwaysWhite',
-                borderRadius: 2,
-                border:' 2px solid #9EB423'
-              }}>
-                <Typography sx={{ fontSize: '0.9rem', m: '0.5rem'}}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="32"  height="32" viewBox="0 0 32 32" fill="none">
-                <path d="M14.6666 9.33329H17.3333V12H14.6666V9.33329ZM14.6666 14.6666H17.3333V22.6666H14.6666V14.6666ZM16 2.66663C8.63996 2.66663 2.66663 8.63996 2.66663 16C2.66663 23.36 8.63996 29.3333 16 29.3333C23.36 29.3333 29.3333 23.36 29.3333 16C29.3333 8.63996 23.36 2.66663 16 2.66663ZM16 26.6666C10.12 26.6666 5.33329 21.88 5.33329 16C5.33329 10.12 10.12 5.33329 16 5.33329C21.88 5.33329 26.6666 10.12 26.6666 16C26.6666 21.88 21.88 26.6666 16 26.6666Z" fill="#78891A"/>
+                backgroundColor: '#fff',
+                borderRadius: '1rem',
+                border: '2px solid #9eb424',
+              } }>
+              <Typography sx={ {
+                fontSize: '0.9rem',
+                m: '1rem'
+              } }>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                  <path d="M14.6666 9.33329H17.3333V12H14.6666V9.33329ZM14.6666 14.6666H17.3333V22.6666H14.6666V14.6666ZM16 2.66663C8.63996 2.66663 2.66663 8.63996 2.66663 16C2.66663 23.36 8.63996 29.3333 16 29.3333C23.36 29.3333 29.3333 23.36 29.3333 16C29.3333 8.63996 23.36 2.66663 16 2.66663ZM16 26.6666C10.12 26.6666 5.33329 21.88 5.33329 16C5.33329 10.12 10.12 5.33329 16 5.33329C21.88 5.33329 26.6666 10.12 26.6666 16C26.6666 21.88 21.88 26.6666 16 26.6666Z" fill="#78891A" />
                 </svg>
-                </Typography>
-                <Typography sx={{ fontSize: '0.9rem', m: '0.5rem'}}>
-                  El nou administrador rebrá un email amb una contrasenya temporanea. Aquí el llistat dels administradors.
-                </Typography>                            
+              </Typography>
+              <Typography sx={ {
+                fontSize: '0.9rem',
+                m: '1rem'
+              } }>
+                El nou administrador rebrá un email amb una contrasenya temporanea. Aquí el llistat dels administradors.
+              </Typography>
             </Box>
+            <Typography sx={ {
+              fontSize: '0.9rem',
+              color: '#000',
+              textAlign: 'center',
+              mt: '1rem'
+            } }>
+              Ja tens compte?{ ' ' }Entra
+              <LinkItem to='/login'> aquí</LinkItem>
+            </Typography>
+          </Box>
         </FormProvider>
       </Box>
     </Container>
