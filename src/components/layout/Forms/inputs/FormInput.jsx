@@ -7,13 +7,13 @@ import {
 import { styled } from '@mui/material/styles';
 import { Controller, useFormContext } from 'react-hook-form';
 
-const Input = styled(_Input)`
+const Input = styled( _Input )`
     background-color: white;
     padding: 0.4rem 0.7rem;
     margin-bottom: 0.5rem;
   `;
 
-const FormInput = ({ name, label, ...otherProps }) => {
+const FormInput = ( { name, label, ...otherProps } ) => {
     const {
         control,
         formState: { errors },
@@ -21,30 +21,38 @@ const FormInput = ({ name, label, ...otherProps }) => {
 
     return (
         <Controller
-            control={control}
+            control={ control }
             defaultValue=''
-            name={name}
-            render={({ field }) => (
-                <FormControl fullWidth sx={{ mb: 2 }}>
+            name={ name }
+            render={ ( { field } ) => (
+                <FormControl fullWidth sx={ { mb: 1 } }>
                     <Typography
                         variant='body2'
-                        sx={{ color: 'always.alwaysBlack', mb: 1, fontWeight: 500 }}
+                        sx={ {
+                            color: '#fff',
+                            mb: '2rem',
+                            mt: '2rem',
+                            fontWeight: 500,
+                            fontSize: '1rem',
+                        } }
                     >
-                        {label}
+                        { label }
                     </Typography>
                     <Input
-                        {...field}
+                        { ...field }
                         fullWidth
                         disableUnderline
-                        sx={{ borderRadius: '1rem' }}
-                        error={!!errors[name]}
-                        {...otherProps}
+                        sx={ {
+                            borderRadius: '.5rem'
+                        } }
+                        error={ !!errors[ name ] }
+                        { ...otherProps }
                     />
-                    <FormHelperText error={!!errors[name]}>
-                        {errors[name] ? errors[name].message : ''}
+                    <FormHelperText error={ !!errors[ name ] }>
+                        { errors[ name ] ? errors[ name ].message : '' }
                     </FormHelperText>
                 </FormControl>
-            )}
+            ) }
         />
     );
 };

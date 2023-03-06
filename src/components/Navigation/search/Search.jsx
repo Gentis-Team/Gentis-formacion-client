@@ -12,11 +12,11 @@ const Search = (props) => {
             showIcon={false}
             styling={{
               height: "34px",
-              borderRadius: "4px",
+              borderRadius: "1rem",
               backgroundColor: "white",
               boxShadow: "none",
-              fontSize: "12px",
-              fontFamily: "Arial",
+              fontSize: ".8rem",
+              fontFamily: "Open Sans",
               clearIconMargin: "3px 8px 0 0",
               zIndex: 2,
             }}
