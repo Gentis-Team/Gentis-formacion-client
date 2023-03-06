@@ -23,10 +23,8 @@ export const ColorModeProvider = ({ children }) => {
             createTheme( {
                 palette: {
                     mode,
-
                     ...( mode === 'light' && {
-                        palette: {
-                            type: 'light',
+                       
                             primary: {
                                 main: '#00545f',
                             },
@@ -39,7 +37,7 @@ export const ColorModeProvider = ({ children }) => {
                             background: {
                                 default: '#fafafa',
                             },
-                        },
+                        
                     } ),
                     // ...( mode === 'dark' && {
                     // } ),
@@ -91,6 +89,7 @@ export const ColorModeProvider = ({ children }) => {
                 },
             } ),
         [ mode ],
+
     );
 
     return (
