@@ -139,7 +139,7 @@ const filterCourses = (formData) => {
             <FilterDuration durations={durations} onChange={handleDurationChange}/>
         </FormControl>
         <LoadingButton
-              sx={{ py: '0.8rem', backgroundColor: 'red', color:'#000' }}
+              sx={{ width:'50%', py: '0.8rem', backgroundColor: '#9EB423', color:'#000' }}
               type='submit'
             >
               Cerca els cursos 
