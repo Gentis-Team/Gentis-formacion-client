@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button, ButtonGroup, Grid, styled} from '@mui/material';
+import { Box, Button, ButtonGroup, Grid, styled, Typography} from '@mui/material';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { getFilteredCoursesFn } from '@/api/courseApi';
 import FullScreenLoader from '@/components/layout/loaders/FullScreenLoader';
@@ -69,7 +69,17 @@ const Home = () => {
     return <FullScreenLoader />;
   }
   return (
-    <Box sx={{ m: 1, pb: 8, px: 3, backgroundColor: "background.default" }}>
+    <>
+    <Grid container spacing={3} sx={{ display:'flex', direction:'row' }}>
+      <Grid item xs>
+        <Typography variant="h1" sx={{ m: 1, px: 3, fontWeight: 'bold' }} >Troba el curs per a tu</Typography>
+      </Grid>
+      <Grid m='1rem' >
+        <img src="../../../public/search.png" alt="lupa" />
+      </Grid>
+      
+    </Grid>
+    <Box sx={{ m: 1, pb: 8, px: 3, backgroundColor: "#F4F8DD" }}>
       <Box sx={{ py: 2 }}>
         <Search onSearch={handleOnSearch} onClear={handleOnClear} items={courses} />
       </Box>
@@ -78,7 +88,7 @@ const Home = () => {
         <SButton sx onClick={handleFilterClick('bottom-start')}>Filtra els cursos</SButton>
         <SButton onClick={handleFilterClick('bottom-end')}>Ordena per</SButton>
       </ButtonGroup>
-      <FilterPopper handleClose={setOpen} open={open} anchorEl={anchorEl} placement={placement}/>
+      <FilterPopper handleClose={setOpen} open={open} anchorEl={anchorEl} placement={placement} />
       {courses?.length === 0 || query?.length === 0 ? (
         <Box maxWidth='sm' sx={{ mx: 'auto', py: '5rem' }}>
           <Message type='info' title='Info'>
@@ -89,8 +99,7 @@ const Home = () => {
         <Grid container>
           <Grid
             item
-            md={2}
-          />
+            md={2} />
           <Grid item container xs={12} spacing={2}>
             {!query ? courses?.map((course) => (
               <CourseItem key={course.id} course={course} />
@@ -102,7 +111,7 @@ const Home = () => {
 
         </Grid>
       )}
-    </Box>
+    </Box></>
   );
 };
 

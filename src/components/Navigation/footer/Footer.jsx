@@ -21,7 +21,7 @@ const Footer = () => {
         width: '100%',
         display: 'flex', 
         justifyContent: 'space-around', 
-        backgroundColor: '#734547',
+        backgroundColor: 'primary.main',
         color: 'white',
         alignItems: 'center'}}>
         <Box>© Gentis 2023</Box>

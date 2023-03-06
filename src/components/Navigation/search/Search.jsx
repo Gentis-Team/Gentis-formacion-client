@@ -12,7 +12,8 @@ const Search = (props) => {
             showIcon={false}
             styling={{
               height: "34px",
-              borderRadius: "4px",
+              borderRadius: "10px",
+              border:' 2px solid #BED730',
               backgroundColor: "white",
               boxShadow: "none",
               fontSize: "12px",

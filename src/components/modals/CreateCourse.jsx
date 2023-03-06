@@ -140,7 +140,9 @@ const CreateCourse = ({ setOpenCourseModal }) => {
                     <LoadingButton
                         variant='contained'
                         fullWidth
-                        sx={{ py: '0.8rem', mt: 4, backgroundColor: '#2363eb' }}
+                        sx={{ py: '0.8rem', 
+                        mt: 4, 
+                        backgroundColor: '#2363eb' }}
                         type='submit'
                         loading={isLoading}
                     >
