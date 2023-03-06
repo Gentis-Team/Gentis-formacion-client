@@ -25,8 +25,7 @@ export const ColorModeProvider = ({ children }) => {
                     mode,
 
                     ...( mode === 'light' && {
-                        palette: {
-                            type: 'light',
+                       
                             primary: {
                                 main: '#00545f',
                             },
@@ -39,14 +38,11 @@ export const ColorModeProvider = ({ children }) => {
                             background: {
                                 default: '#fafafa',
                             },
-                        },
+                        
                     } ),
                     // ...( mode === 'dark' && {
                     // } ),
                 },
-                 primary: {
-                        main: "#00545F"
-                      },
                 typography: {
                     fontFamily: 'Open Sans',
                     fontSize: 14,
