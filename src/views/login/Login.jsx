@@ -151,9 +151,10 @@ const LoginPage = () => {
                         maxWidth='27rem'
                         width='100%'
                         sx={{
-                            backgroundColor: 'green.100',
+                            backgroundColor: '#F4F8DD',
                             p: { xs: '1rem', sm: '2rem' },
                             borderRadius: 2,
+                            border:' 2px solid #9EB423'
                         }}
                     >
                         <FormInput name='email' label='Email' type='email' />
@@ -169,16 +170,17 @@ const LoginPage = () => {
 
                         <LoadingButton
                             variant='contained'
-                            sx={{ mt: 1, color:'always.alwaysBlack', backgroundColor:'green.400', borderRadius: 4 }}
+                            sx={{ mt: 1, color:'always.alwaysBlack', backgroundColor:'#9EB423', borderRadius: 4 }}
                             fullWidth
                             disableElevation
                             type='submit'
                             loading={isLoading}
                         >
-                            Entra
+                            Entrar
                         </LoadingButton>
-
-                        <Box
+                    </Box>
+                    
+                    <Box
                         mt={4}
                         sx={{
                         display: 'flex',
@@ -187,9 +189,9 @@ const LoginPage = () => {
                         flexDirection: 'row',
                         backgroundColor: 'always.alwaysWhite',
                         borderRadius: 2,
+                        border:' 2px solid #9EB423'
                         }}>
                         </Box>
-                    </Box>
                 </FormProvider>
             </Box>
         </Container>
