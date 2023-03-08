@@ -23,7 +23,6 @@ export const ColorModeProvider = ({ children }) => {
             createTheme( {
                 palette: {
                     mode,
-
                     ...( mode === 'light' && {
                        
                             primary: {

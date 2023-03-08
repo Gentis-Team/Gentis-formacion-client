@@ -4,19 +4,20 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const handleClick = () => {
-  window.open('https://www.gentis.org/fundacio-gentis/')
+  window.open( 'https://www.gentis.org/fundacio-gentis/' )
 }
 
 const handleClick2 = () => {
-  window.open('https://www.gentis.org/politica-gentis/')
+  window.open( 'https://www.gentis.org/politica-gentis/' )
 }
 
 const handleClick3 = () => {
-  window.open('https://www.gentis.org/')
-} 
+  window.open( 'https://www.gentis.org/' )
+}
 
 const Footer = () => {
   return (
+
       <BottomNavigation   component="footer" sx={{
       width: '100%',
       
@@ -32,6 +33,7 @@ const Footer = () => {
           <img src="../../public/logo-Gentis-blanc-800px-768x279 1.png" alt="Gentis" />
         </Button>
       </BottomNavigation>
+
   )
 }
 

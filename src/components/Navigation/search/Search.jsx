@@ -12,12 +12,11 @@ const Search = (props) => {
             placeholder="Cerca cursos"
             styling={{
               height: "34px",
-              borderRadius: "10px",
-              border:' 2px solid #BED730',
+              borderRadius: "1rem",
               backgroundColor: "white",
               boxShadow: "none",
-              fontSize: "12px",
-              fontFamily: "Arial",
+              fontSize: ".8rem",
+              fontFamily: "Open Sans",
               clearIconMargin: "3px 8px 0 0",
               zIndex: 2,
             }}
