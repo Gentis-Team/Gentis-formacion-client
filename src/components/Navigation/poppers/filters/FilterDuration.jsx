@@ -9,7 +9,7 @@ const FilterDuration = (props) => {
     return (
         <React.Fragment>
             <Box sx={{ backgroundColor: 'background.filter', }}>
-                <FormLabel component="legend" ><Box sx={{ display: "flex", alignItems: 'center', gap: 2, py: 1, px: 3 }}><CalendarMonthOutlinedIcon />Durada</Box></FormLabel>
+                <FormLabel component="legend" ><Box sx={{ display: "flex", alignItems: 'center', gap: 2, py: 1, px: 3 }}><CalendarMonthOutlinedIcon /><Typography sx={{ fontWeight:'bold'}}>Durada</Typography></Box></FormLabel>
             </Box>
             <FormGroup sx={{ p: 3 }} >
                 {durations.map((duration) => (
