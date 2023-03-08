@@ -30,7 +30,7 @@ const RequireGuest = () => {
     return (cookies.logged_in || user) ? (
         <Navigate to='/' state={{ from: location }} replace />
     ) : (
-        <Navigate to='/login' state={{ from: location }} replace />
+        <Outlet/>
     );
 };
 

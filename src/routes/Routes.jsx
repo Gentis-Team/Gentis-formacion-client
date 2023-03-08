@@ -30,17 +30,11 @@ const authRoutes = {
     path: '*',
     element: <Layout />,
     children: [
-        {
-            path: 'login',
-            element: <RequireGuest/>,
-            children: [
+        
                 {
-                    path: '',
+                    path: 'login',
                     element: <LoginPage />,
                 },
-            ],
-        },
-       
         {
             path: 'create',
             element: <RequireUser allowedRoles={['user', 'admin']} />,
