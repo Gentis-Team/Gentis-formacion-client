@@ -150,7 +150,6 @@ const LoginPage = () => {
                         component='form'
                         onSubmit={handleSubmit(onSubmitHandler)}
                         noValidate
-                        autoComplete='off'
                         maxWidth='27rem'
                         width='100%'
                         sx={{

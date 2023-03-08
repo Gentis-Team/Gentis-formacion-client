@@ -23,12 +23,14 @@ import { logoutUserFn } from '@/api/authApi';
 import useHandleError from '@/services/hooks/useHandleError';
 import { AccountCircle } from '@mui/icons-material';
 import { withStyles } from '@mui/styles';
+import { useLocation } from 'react-router-dom'
 
 
 const drawerWidth = 240;
 
 function DrawerAppBar(props) {
     const navigate = useNavigate();
+    const location = useLocation();
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -54,6 +56,10 @@ function DrawerAppBar(props) {
         logoutUser();
     };
 
+    const can = (permission) =>
+        (user?.permissions).find((p) => p === permission) ? true : false;
+
+
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
             <Typography variant="h6" sx={{ my: 2 }}>
@@ -62,6 +68,14 @@ function DrawerAppBar(props) {
             <Divider />
             <List>
                 {
+                    user && can('create users') && (
+                        <ListItem disablePadding>
+                            <ListItemButton onClick={() => navigate('/register')} sx={{ textAlign: 'center' }}>
+                                <ListItemText primary={'Crear Administrador'} />
+                            </ListItemButton>
+                        </ListItem>
+                    )}
+                {
                     user && (
                         <>
                             <ListItem disablePadding>
@@ -69,13 +83,14 @@ function DrawerAppBar(props) {
                                     <ListItemText primary={'Crear Curs'} />
                                 </ListItemButton>
                             </ListItem>
-                            <ListItem  disablePadding>
+                            <ListItem disablePadding>
                                 <ListItemButton onClick={onLogoutHandler} sx={{ textAlign: 'center' }}>
                                     <ListItemText primary={'Tanca Sessió'} />
                                 </ListItemButton>
                             </ListItem>
                         </>
                     )}
+
 
             </List>
         </Box>
@@ -87,35 +102,49 @@ function DrawerAppBar(props) {
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
             <AppBar component="nav" sx={{ display: 'flex', flexDirection: 'row' }} >
-                <IconButton
-                    aria-label="arrow"
-                    size="large"
-                    onClick={() => navigate('/')}
-                    sx={{ display: { sm: 'none' } }}
-                >
-                    <ArrowBackIosIcon />
-                </IconButton>
+                {location.pathname !== '/' && (
+                    <IconButton
+                        aria-label="arrow"
+                        size="large"
+                        onClick={() => navigate('/')}
+                        sx={{ display: { sm: 'none' } }}
+                    >
+                        <ArrowBackIosIcon />
+                    </IconButton>
+                )}
                 <Typography
                     variant="h6"
                     component="div"
                     onClick={() => navigate('/')}
                     sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', ml: 4 }}
                 >
-                    Gentis
+                    <Typography sx={{ fontWeight: 'bold' }}>Gentis</Typography><Typography sx={{ color: '#D9E887' }}>Formació</Typography>
                 </Typography>
                 <Toolbar sx={{ display: 'flex', justifyContent: 'end' }}>
-                    { user && (
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: 'none' } }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
+                    {user && (
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            edge="start"
+                            onClick={handleDrawerToggle}
+                            sx={{ mr: 2, display: { sm: 'none' } }}
+                        >
+                            <MenuIcon />
+                        </IconButton>
                     )}
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+                    {
+                            user && can('create users') && (
+                                <LoadingButton
+                                    loading={isLoading}
+                                    onClick={() => navigate('/register')}
+                                    sx={{
+                                        color: "white"
+                                    }}
+                                >
+                                    Crear Administrador
+                                </LoadingButton>
+                            )}
                         {
                             user && (
                                 <>
@@ -129,14 +158,16 @@ function DrawerAppBar(props) {
                                         Crear Curs
                                     </LoadingButton>
                                     <LoadingButton onClick={onLogoutHandler}
-                                     sx={{
-                                        color: "white"
-                                    }}
+                                        sx={{
+                                            color: "white"
+                                        }}
                                     >
                                         Tanca Sessió
                                     </LoadingButton>
                                 </>
                             )}
+
+                        
                     </Box>
                 </Toolbar>
             </AppBar>

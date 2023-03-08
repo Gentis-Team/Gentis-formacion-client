@@ -38,6 +38,19 @@ import { useRequirementsContext } from "@/services/providers/RequirementsContext
 import { Box } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { useNavigate } from "react-router-dom";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const newTheme = createTheme();
+
+newTheme.typography.h3 = {
+  fontSize: '2rem',
+  '@media (min-width:600px)': {
+    fontSize: '4rem',
+  },
+  [newTheme.breakpoints.up('md')]: {
+    fontSize: '4rem',
+  },
+};
 
 export default function ColorButtons() {
   const categoriesContext = useCategoriesContext();
@@ -160,9 +173,12 @@ export default function ColorButtons() {
       container
       direction="column"
       sx={{p: "16px", m: "auto", width: "90%" }}
-    > <Typography variant="h2" sx={{ fontFamily: "Kanit", fontWeight: 700 }}>
+    > 
+    <ThemeProvider theme={newTheme}>
+      <Typography variant="h3" sx={{ fontFamily: "Kanit", fontWeight: 700 }}>
           Crea un nou curs
         </Typography>
+        </ThemeProvider>
       <Box sx={{ bgcolor: "#F4F8DD", p: "16px", m: "auto", width: "100%" }}>
         
         
@@ -174,6 +190,7 @@ export default function ColorButtons() {
         >
           <Button
             variant="outlined"
+            onClick={() => navigate('/')}
             sx={{
               borderColor: "#BED730",
               color: "black",
@@ -183,10 +200,9 @@ export default function ColorButtons() {
               borderRadius: "16px",
 
               width: "189.5px",
-              height: "44px",
             }}
           >
-            Tanca
+            Torna
           </Button>
           <LoadingButton
             variant="contained"
@@ -195,12 +211,11 @@ export default function ColorButtons() {
               color: "black",
               borderRadius: "16px",
               width: "189.5px",
-              height: "44px",
             }}
             type="submit"
             loading={isLoading}
           >
-            Desa nou curs
+            Desa
           </LoadingButton>
         </Stack>
         <Box

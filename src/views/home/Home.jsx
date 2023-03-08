@@ -18,7 +18,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const newTheme = createTheme();
 
 newTheme.typography.h3 = {
-  fontSize: '2rem',
+  fontSize: '1.75rem',
   '@media (min-width:600px)': {
     fontSize: '4rem',
   },

@@ -109,7 +109,6 @@ const CourseItem = ({ course }) => {
           bgcolor: 'background.paper',
           borderRadius: 2,
         }}
-        onClick={() => navigate('/single-course/' + course.id)}
         style={{ border: "2px solid #BED730" }}
  >
                     <CardHeader
@@ -136,15 +135,17 @@ const CourseItem = ({ course }) => {
                         open={open}
                         onClose={handleClose}
                         setOpenCourseModal={setOpenCourseModal} 
+                        onDeleteHandler={onDeleteHandler}
+                        courseId={course.id}
                     />
-                    <CardContent>
+                    <CardContent onClick={() => navigate('/single-course/' + course.id)}>
                         <Typography variant="body2" color="text.secondary">
                             <Tags course={course}/>
                         </Typography>
                     </CardContent>
                     <CardActions disableSpacing>
                         <Tooltip title="Demana més informació" placement="bottom">
-                            <IconButton aria-label="Demana més informació">
+                            <IconButton onClick={() => navigate('/new-student')}aria-label="Demana més informació">
                                 <EmailIcon color="primary" />
                             </IconButton>
                         </Tooltip>
