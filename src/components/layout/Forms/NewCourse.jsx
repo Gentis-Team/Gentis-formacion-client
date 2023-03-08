@@ -153,281 +153,97 @@ export default function ColorButtons() {
     return <FullScreenLoader />;
   }
   return (
-    <Box
-      justifyContent="center"
-      alignItems="center"
-      alignContent="center"
-      container
-      direction="column"
-      sx={{p: "16px", m: "auto", width: "90%" }}
-    > <Typography variant="h2" sx={{ fontFamily: "Kanit", fontWeight: 700 }}>
-          Crea un nou curs
-        </Typography>
-      <Box sx={{ bgcolor: "#F4F8DD", p: "16px", m: "auto", width: "100%" }}>
-        
-        
-        <Stack
-          justifyContent="center"
-          direction="row"
-          spacing={2}
-          sx={{ p: 2, m: 2 }}
-        >
-          <Button
-            variant="outlined"
-            sx={{
-              borderColor: "#BED730",
-              color: "black",
-              "&:hover": {
-                borderColor: "red",
-              },
-              borderRadius: "16px",
-
-              width: "189.5px",
-              height: "44px",
-            }}
-          >
-            Tanca
-          </Button>
-          <LoadingButton
-            variant="contained"
-            sx={{
-              bgcolor: "#BED730",
-              color: "black",
-              borderRadius: "16px",
-              width: "189.5px",
-              height: "44px",
-            }}
-            type="submit"
-            loading={isLoading}
-          >
-            Desa nou curs
-          </LoadingButton>
-        </Stack>
+    <Box>
+      <Typography
+        variant="h2"
+        sx={{ml:22,
+          p: 2,
+          fontFamily: "Kanit",
+          fontWeight: 700,
+          "@media (max-width: 425px)": {
+            display: "none",
+            
+          },
+        }}
+      >
+        Crea un nou curs
+      </Typography>
+      <Box
+        sx={{
+          bgcolor: "#F4F8DD",
+        }}
+      >
         <Box
-          component="form"
-          noValidate
-          autoComplete="off"
-          onSubmit={handleSubmit}
+          sx={{
+            p: 2,
+            "@media (max-width: 1024px)": {
+              display: "none",
+            },
+          }}
         >
-          <List
-            direction="column"
-            sx={{ color: "black", width: 300, borderRadius: "16px" }}
+          <Stack
+            
+            direction="row"
+            sx={{ p: 2, ml:20 }}
           >
-            Categoría
-            <Stack sx={{ my: 1, bgcolor: "#E9F9FB", p: 2 }}>
-              <RadioGroup
-                aria-labelledby="demo-row-radio-buttons-group-label"
-                name="categories-radios"
-                onChange={handleCategoriesChange}
-                value={selectedCategories}
-              >
-                {categories?.map((category) => (
-                  <CategoriesRadios
-                    name="categories"
-                    key={category.name}
-                    value={category.id}
-                    label={category.name}
-                  />
-                ))}
-              </RadioGroup>
-            </Stack>
-          </List>
-          <List sx={{ color: "black" }}>
-            Codi
-            <Box
-              sx={{
-                bgcolor: "#E9F9FB",
-                alignItems: "center",
-                my: 1,
-                borderRadius: "16px",
-              }}
-            >
-              <TextField
-                placeholder="Escriu el codi del curs aquí"
-                sx={{ width: "100%" }}
-                id="demo-helper-text-aligned-no-helper"
-                name="code"
-                InputLabelProps={{
-                  style: { color: "black" },
-                }}
-                InputProps={{ inputProps: { style: { color: "black" } } }}
-                focused
-                value={form.code}
-                onChange={handleChange}
-              />
-            </Box>
-          </List>
-          <List sx={{ color: "black" }}>
-            Titol
-            <Stack
-              sx={{
-                bgcolor: "#E9F9FB",
-                alignItems: "center",
-                my: 2,
-                borderRadius: "16px",
-              }}
-            >
-              <TextField
-                sx={{ width: "100%" }}
-                id="demo-helper-text-aligned-no-helper"
-                placeholder="Escriu el títol del curs aquí"
-                InputLabelProps={{
-                  style: { color: "black" },
-                }}
-                InputProps={{ inputProps: { style: { color: "black" } } }}
-                focused
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-              />
-            </Stack>
-          </List>
-          <List sx={{ color: "black" }}>
-            Seu
-            <Stack
-              sx={{
-                flexGrow: 1,
-                my: 1,
-                bgcolor: "#E9F9FB",
-                my: 2,
-                width: 300,
-                borderRadius: "16px",
-              }}
-            >
-              <RadioGroup
-                row
-                container
+            <Box>
+              <Button
+                variant="contained"
                 sx={{
-                  justifyContent: "space-between",
-                  px: 2,
-                }}
-                name="locations-radios"
-                onChange={handleLocationsChange}
-                value={selectedLocations}
-              >
-                {locations?.map((location) => (
-                  <FormControlLabel
-                    key={location.name}
-                    value={location.id}
-                    control={
-                      <Radio
-                        sx={{
-                          color: "black",
-                          "&.Mui-checked": {
-                            color: "#BED730",
-                          },
-                        }}
-                      />
-                    }
-                    label={location.location}
-                  />
-                ))}
-              </RadioGroup>
-            </Stack>
-          </List>
-          <List sx={{ color: "black" }}>
-            Hores Teoria
-            <Box
-              sx={{
-                bgcolor: "#E9F9FB",
-                alignItems: "center",
-                my: 2,
-                borderRadius: "16px",
-              }}
-            >
-              <Stack
-                direction="row"
-                sx={{
-                  alignItems: "center",
-                  justifyContent: "space-between",
+                  bgcolor: "#BED730",
+                  color: "black",
+                  borderRadius: "16px",
+                  width: "189.5px",
+                  height: "44px",
                 }}
               >
-                <TextField
-                  placeholder="800"
-                  sx={{ width: "100%" }}
-                  id="demo-helper-text-aligned-no-helper"
-                  InputLabelProps={{
-                    style: { color: "black" },
-                  }}
-                  type="number"
-                  InputProps={{ inputProps: { style: { color: "black" } } }}
-                  focused
-                  name="duration_theory"
-                  value={form.duration_theory}
-                  onChange={handleChange}
-                />
-              </Stack>
+                Crea Nou Curs
+              </Button>
             </Box>
-          </List>
-          <List sx={{ color: "black" }}>
-            Hores pràctica
-            <Box
-              sx={{
-                bgcolor: "#E9F9FB",
-                alignItems: "center",
-                my: 2,
-                borderRadius: "16px",
-              }}
-            >
-              <Stack
-                direction="row"
-                sx={{
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <TextField
-                  sx={{ width: "100%" }}
-                  id="demo-helper-text-aligned-no-helper"
-                  InputLabelProps={{
-                    style: { color: "black" },
-                  }}
-                  type="number"
-                  placeholder="800"
-                  InputProps={{ inputProps: { style: { color: "black" } } }}
-                  focused
-                  name="duration_practice"
-                  value={form.duration_practice}
-                  onChange={handleChange}
-                />
-              </Stack>
-            </Box>
-          </List>
 
-          <List sx={{ color: "black" }}>
-            Descripció
-            <Stack
-              sx={{
-                bgcolor: "#E9F9FB",
-                alignItems: "center",
-                my: 2,
-                borderRadius: "16px",
-              }}
-            >
-              <Stack
+            <Box spacing={2} >
+              <LoadingButton 
+                variant="contained"
                 sx={{
-                  width: "100%",
-                  alignItems: "center",
-                  justifyContent: "space-between",
+                  ml:45,
+                  bgcolor: "#BED730",
+                  color: "black",
+                  borderRadius: "16px",
+                  width: "189.5px",
+                  height: "44px",
+                }}
+                type="submit"
+                loading={isLoading}
+              >
+                Desa
+              </LoadingButton>
+              <Button 
+                variant="outlined"
+                sx={{ ml:2,
+                  borderColor: "#BED730",
+                  color: "black",
+                  "&:hover": {
+                    borderColor: "red",
+                  },
+                  borderRadius: "16px",
+
+                  width: "189.5px",
+                  height: "44px",
                 }}
               >
-                <TextField
-                  sx={{ width: "100%" }}
-                  id="demo-helper-text-aligned-no-helper"
-                  InputLabelProps={{
-                    style: { color: "black" },
-                  }}
-                  placeholder="Escriu la descripció del curs aquí."
-                  InputProps={{ inputProps: { style: { color: "black" } } }}
-                  focused
-                  name="description"
-                  value={form.description}
-                  onChange={handleChange}
-                />
-              </Stack>
-            </Stack>
-          </List>
-
+                Descarta
+              </Button>
+            </Box>
+          </Stack>
+        </Box>
+        <Box
+          sx={{
+            p: 2,
+            "@media (min-width: 1025px)": {
+              display: "none",
+            },
+          }}
+        >
           <Stack
             justifyContent="center"
             direction="row"
@@ -444,7 +260,7 @@ export default function ColorButtons() {
                 },
                 borderRadius: "16px",
 
-                width: "189.5px",
+                width: "250px",
                 height: "44px",
               }}
             >
@@ -456,7 +272,7 @@ export default function ColorButtons() {
                 bgcolor: "#BED730",
                 color: "black",
                 borderRadius: "16px",
-                width: "189.5px",
+                width: "250px",
                 height: "44px",
               }}
               type="submit"
@@ -465,6 +281,297 @@ export default function ColorButtons() {
               Desa nou curs
             </LoadingButton>
           </Stack>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+          }}
+        >
+          <Box
+            component="form"
+            noValidate
+            autoComplete="off"
+            onSubmit={handleSubmit}
+            sx={{
+              m: 2,
+              p: 2,
+              bgcolor: "white",
+              width: "50%",
+              "@media (max-width: 400px)": {
+                width: "90%",
+              },
+            }}
+          >
+            <List
+              direction="column"
+              sx={{ color: "black", borderRadius: "16px" }}
+            >
+              Categoría
+              <Stack sx={{ my: 1, bgcolor: "#E9F9FB", p: 2 }}>
+                <RadioGroup
+                  aria-labelledby="demo-row-radio-buttons-group-label"
+                  name="categories-radios"
+                  onChange={handleCategoriesChange}
+                  value={selectedCategories}
+                >
+                  {categories?.map((category) => (
+                    <CategoriesRadios
+                      name="categories"
+                      key={category.name}
+                      value={category.id}
+                      label={category.name}
+                    />
+                  ))}
+                </RadioGroup>
+              </Stack>
+            </List>
+            <List sx={{ color: "black" }}>
+              Codi
+              <Box
+                sx={{
+                  bgcolor: "#E9F9FB",
+                  alignItems: "center",
+                  my: 1,
+                  borderRadius: "16px",
+                }}
+              >
+                <TextField
+                  placeholder="Escriu el codi del curs aquí"
+                  sx={{ width: "100%" }}
+                  id="demo-helper-text-aligned-no-helper"
+                  name="code"
+                  InputLabelProps={{
+                    style: { color: "black" },
+                  }}
+                  InputProps={{ inputProps: { style: { color: "black" } } }}
+                  focused
+                  value={form.code}
+                  onChange={handleChange}
+                />
+              </Box>
+            </List>
+            <List sx={{ color: "black" }}>
+              Titol
+              <Stack
+                sx={{
+                  bgcolor: "#E9F9FB",
+                  alignItems: "center",
+                  my: 2,
+                  borderRadius: "16px",
+                }}
+              >
+                <TextField
+                  sx={{ width: "100%" }}
+                  id="demo-helper-text-aligned-no-helper"
+                  placeholder="Escriu el títol del curs aquí"
+                  InputLabelProps={{
+                    style: { color: "black" },
+                  }}
+                  InputProps={{ inputProps: { style: { color: "black" } } }}
+                  focused
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                />
+              </Stack>
+            </List>
+            <List sx={{ color: "black" }}>
+              Seu
+              <Stack
+                sx={{
+                  flexGrow: 1,
+                  my: 1,
+                  bgcolor: "#E9F9FB",
+                  my: 2,
+                  width: 300,
+                  borderRadius: "16px",
+                }}
+              >
+                <RadioGroup
+                  row
+                  container
+                  sx={{
+                    justifyContent: "space-between",
+                    px: 2,
+                  }}
+                  name="locations-radios"
+                  onChange={handleLocationsChange}
+                  value={selectedLocations}
+                >
+                  {locations?.map((location) => (
+                    <FormControlLabel
+                      key={location.name}
+                      value={location.id}
+                      control={
+                        <Radio
+                          sx={{
+                            color: "black",
+                            "&.Mui-checked": {
+                              color: "#BED730",
+                            },
+                          }}
+                        />
+                      }
+                      label={location.location}
+                    />
+                  ))}
+                </RadioGroup>
+              </Stack>
+            </List>
+            <List sx={{ color: "black" }}>
+              Hores Teoria
+              <Box
+                sx={{
+                  bgcolor: "#E9F9FB",
+                  alignItems: "center",
+                  my: 2,
+                  borderRadius: "16px",
+                }}
+              >
+                <Box
+                  direction="row"
+                  sx={{
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <TextField
+                    placeholder="800"
+                    sx={{ width: "100%" }}
+                    id="demo-helper-text-aligned-no-helper"
+                    InputLabelProps={{
+                      style: { color: "black" },
+                    }}
+                    type="number"
+                    InputProps={{ inputProps: { style: { color: "black" } } }}
+                    focused
+                    name="duration_theory"
+                    value={form.duration_theory}
+                    onChange={handleChange}
+                  />
+                </Box>
+              </Box>
+            </List>
+            <List sx={{ color: "black" }}>
+              Hores pràctica
+              <Box
+                sx={{
+                  bgcolor: "#E9F9FB",
+                  alignItems: "center",
+                  my: 2,
+                  borderRadius: "16px",
+                }}
+              >
+                <Stack
+                  direction="row"
+                  sx={{
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <TextField
+                    sx={{ width: "100%" }}
+                    id="demo-helper-text-aligned-no-helper"
+                    InputLabelProps={{
+                      style: { color: "black" },
+                    }}
+                    type="number"
+                    placeholder="800"
+                    InputProps={{ inputProps: { style: { color: "black" } } }}
+                    focused
+                    name="duration_practice"
+                    value={form.duration_practice}
+                    onChange={handleChange}
+                  />
+                </Stack>
+              </Box>
+            </List>
+
+            <List sx={{ color: "black" }}>
+              Descripció
+              <Stack
+                sx={{
+                  bgcolor: "#E9F9FB",
+                  alignItems: "center",
+                  my: 2,
+                  borderRadius: "16px",
+                }}
+              >
+                <Stack
+                  sx={{
+                    width: "100%",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <TextField
+                    sx={{ width: "100%" }}
+                    id="demo-helper-text-aligned-no-helper"
+                    InputLabelProps={{
+                      style: { color: "black" },
+                    }}
+                    placeholder="Escriu la descripció del curs aquí."
+                    InputProps={{ inputProps: { style: { color: "black" } } }}
+                    focused
+                    name="description"
+                    value={form.description}
+                    onChange={handleChange}
+                  />
+                </Stack>
+              </Stack>
+            </List>
+          </Box>
+          <Box
+            sx={{
+              width: "30%",
+              p: 8,
+              "@media (max-width: 768px)": {
+                display: "none",
+              },
+            }}
+          >
+            <Box sx={{ bgcolor: "white", p: 2 }}>
+              <Typography variant="h6">Altres informacions</Typography>
+              <Typography
+                sx={{
+                  fontFamily: "Inter",
+                  fontWeight: 500,
+                  fontSize: "16px",
+                }}
+              >
+                GENTIS GIRONA c/ Garrotxa 7 17006 – Girona Tel: 972 40 54 54 La
+                Maret (Salt) C/ Sant Roc, 2 17190 Salt Tel. 972 40 54 55
+              </Typography>
+            </Box>
+            <Box sx={{ bgcolor: "white", p: 2 }}>
+              <Typography variant="h6">Altres informacions</Typography>
+              <Typography
+                sx={{
+                  fontFamily: "Inter",
+                  fontWeight: 500,
+                  fontSize: "16px",
+                }}
+              >
+                GENTIS GIRONA c/ Garrotxa 7 17006 – Girona Tel: 972 40 54 54 La
+                Maret (Salt) C/ Sant Roc, 2 17190 Salt Tel. 972 40 54 55
+              </Typography>
+            </Box>
+            <Box sx={{ bgcolor: "white", p: 2 ,mt:2}}>
+              <Typography variant="h6">Altres informacions</Typography>
+              <Typography
+                sx={{
+                  fontFamily: "Inter",
+                  fontWeight: 500,
+                  fontSize: "16px",
+                }}
+              >
+                GENTIS GIRONA c/ Garrotxa 7 17006 – Girona Tel: 972 40 54 54 La
+                Maret (Salt) C/ Sant Roc, 2 17190 Salt Tel. 972 40 54 55
+              </Typography>
+            </Box>
+          </Box>
         </Box>
       </Box>
     </Box>
