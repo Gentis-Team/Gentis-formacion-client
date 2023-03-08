@@ -24,6 +24,7 @@ const UnauthorizePage = Loadable(
 /* A route that is not protected by the `RequireUser` guard. */
 const authRoutes = {
     path: '*',
+    element: <Layout />,
     children: [
         {
             path: 'login',
@@ -32,11 +33,6 @@ const authRoutes = {
         {
             path: 'register',
             element: <RegisterPage />,
-        },
-        {
-
-            path: 'single-course/:id',
-            element: <SingleCourse />,
         },
         {
             path: 'create',
@@ -63,6 +59,11 @@ const normalRoutes = {
                     element: <ProfilePage />,
                 },
             ],
+        },
+        {
+
+            path: 'single-course/:id',
+            element: <SingleCourse />,
         },
         {
             path: 'unauthorized',

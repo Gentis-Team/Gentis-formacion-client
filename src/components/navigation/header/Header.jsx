@@ -98,6 +98,7 @@ function DrawerAppBar(props) {
                 <Typography
                     variant="h6"
                     component="div"
+                    onClick={() => navigate('/')}
                     sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', ml: 4 }}
                 >
                     Gentis

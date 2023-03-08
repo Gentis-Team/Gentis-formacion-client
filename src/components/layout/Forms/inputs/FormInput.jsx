@@ -29,7 +29,7 @@ const FormInput = ( { name, label, ...otherProps } ) => {
                     <Typography
                         variant='body2'
                         sx={ {
-                            color: '#fff',
+                            color: '#000',
                             mb: '2rem',
                             mt: '2rem',
                             fontWeight: 500,

@@ -153,8 +153,7 @@ const RegisterPage = () => {
             } }
           >
             <FormInput name='name' label='Nom' />
-            <FormInput name='name' label='Cognoms' />
-            <FormInput name='role' label='D.N.I' />
+            <FormInput name='role' label='Rol' />
             <FormInput name='email' label='Email' type='email' />
             <FormInput name='password' label='Contrasenya' type='password' />
             <FormInput

@@ -21,7 +21,6 @@ const LoadingButton = styled( _LoadingButton )`
   background-color: #f9d13e;
   color: 'always.alwaysBlack';
   font-weight: 500;
-
   &:hover {
     background-color: #ebc22c;
     transform: translateY(-2px);
@@ -111,11 +110,12 @@ const LoginPage = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: '100vh',
+        minHeight: '90vh',
         backgroundColor: 'always.alwaysWhite',
       } }
     >
-      <Box
+
+<Box
         sx={ {
           display: 'flex',
           justifyContent: 'left',
@@ -123,52 +123,6 @@ const LoginPage = () => {
           flexDirection: 'column',
         } }
       >
-        <Typography
-          textAlign='left'
-          component='h1'
-          sx={ {
-            fontWeight: 800,
-            fontSize: { xs: '2rem', md: '3rem' },
-            mb: '.8rem',
-            letterSpacing: -1,
-          } }
-        >
-          Admin Login
-        </Typography>
-
-        <FormProvider { ...methods }>
-          <Box
-            component='form'
-            onSubmit={ handleSubmit( onSubmitHandler ) }
-            noValidate
-            autoComplete='off'
-            maxWidth='27rem'
-            width='100%'
-            sx={ {
-              backgroundColor: '#F4F8DD',
-              p: { xs: '1rem', sm: '1rem' },
-              borderRadius: '1rem',
-              boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.1)',
-              border: '2px solid #9eb424',
-            } }
-          >
-            <FormInput
-              name='email'
-              label='Email'
-              type='email'
-            />
-            <FormInput
-              name='password'
-              label='Contrasenya'
-              type='password'
-            />
-
-            <Typography
-              sx={ {
-                fontSize: '.8rem',
-                textAlign: 'right',
-              } }
-            >
 
                 <Typography
                     textAlign='center'
@@ -186,7 +140,7 @@ const LoginPage = () => {
                 <Typography
                     variant='body1'
                     component='h2'
-                    sx={{ color: '#e5e7eb', mb: 2 }}
+                    sx={{ color: 'black', mb: 2 }}
                 >
                     Inicia sessió per tenir accés!
                 </Typography>
@@ -228,21 +182,8 @@ const LoginPage = () => {
                             Entrar
                         </LoadingButton>
                     </Box>
-                    
-                    <Box
-                        mt={4}
-                        sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        flexDirection: 'row',
-                        backgroundColor: 'always.alwaysWhite',
-                        borderRadius: 2,
-                        border:' 2px solid #9EB423'
-                        }}>
-                        </Box>
                 </FormProvider>
-            </Box>
+           </Box>
         </Container>
     );
 
