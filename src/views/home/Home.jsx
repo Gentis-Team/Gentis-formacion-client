@@ -122,7 +122,7 @@ const Home = () => {
           </>
         )}
         <FilterPopper handleClose={setOpen} open={open} anchorEl={anchorEl} placement={placement} />
-        {courses?.length === 0 || query?.length === 0 ? (
+        {courses?.length === 0 || query?.length === 0 && !matches ?  (
           <Box maxWidth='sm' sx={{ mx: 'auto', py: '5rem' }}>
             <Message type='info' title='Info'>
               No courses matching your search
@@ -131,13 +131,21 @@ const Home = () => {
         ) : (
           <Grid container paddingTop={5}>
             <Grid item container xs={12} md={8} spacing={2}>
-              {!query ? courses?.map((course) => (
+            {
+              courses?.length === 0 || query?.length === 0 && matches ? (
+                <Box maxWidth='sm' sx={{ mx: 'auto', py: '5rem' }}>
+                  <Message type='info' title='Info'>
+                    No courses matching your search
+                  </Message>
+                </Box>
+              ) : (
+              !query ? courses?.map((course) => (
 
                 <CourseItem key={course.id} course={course} />
               ))
                 : query?.map((course) => (
                   <CourseItem key={course.id} course={course} />
-                ))}
+                )))}
             </Grid>
             {matches && (
 
