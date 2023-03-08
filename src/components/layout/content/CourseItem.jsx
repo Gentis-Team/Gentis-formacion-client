@@ -35,9 +35,10 @@ import InfoIcon from '@mui/icons-material/Info';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import SettingsMenu from './SettingsMenu';
 import ReactWhatsapp from 'react-whatsapp';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Tags from '../../Navigation/tags/Tags';
+import EmailIcon from '@mui/icons-material/Email';
 
-const SERVER_ENDPOINT = import.meta.env.VITE_REACT_APP_SERVER_ENDPOINT;
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -51,6 +52,7 @@ const ExpandMore = styled((props) => {
 }));
 
 const CourseItem = ({ course }) => {
+    const navigate = useNavigate();
     const stateContext = useStateContext();
     const user = stateContext.state.authUser;
     const [expanded, setExpanded] = React.useState(false);
@@ -102,8 +104,14 @@ const CourseItem = ({ course }) => {
 
     return (
         <>
-            <Grid item xs={12} md={6} lg={4}>
-                <Card >
+            <Grid item xs={12} md={6}>
+                <Card  sx={{
+          bgcolor: 'background.paper',
+          borderRadius: 2,
+        }}
+        onClick={() => navigate('/single-course/' + course.id)}
+        style={{ border: "2px solid #BED730" }}
+ >
                     <CardHeader
                         avatar={
                             <Avatar aria-label="recipe">
@@ -111,13 +119,16 @@ const CourseItem = ({ course }) => {
                             </Avatar>
                         }
                         action={
-                            <IconButton onClick={handleSettingsClick} aria-label="settings">
-                                <MoreVertIcon />
-                            </IconButton>
+                            user && can('edit courses') && (
+                                <IconButton onClick={handleSettingsClick} aria-label="settings">
+                                    <MoreVertIcon />
+                                </IconButton>
+                            )
+                            
                         }
                         titleTypographyProps={{ variant: 'body2' }}
                         subheaderTypographyProps={{ variant: 'subtitle2' }}
-                        title={course.categories[0].name}
+                        title={`${course.categories[0].name} | ${course.code}`}
                         subheader={course.name}
                     />
                     <SettingsMenu 
@@ -128,18 +139,18 @@ const CourseItem = ({ course }) => {
                     />
                     <CardContent>
                         <Typography variant="body2" color="text.secondary">
-                            Tags
+                            <Tags course={course}/>
                         </Typography>
                     </CardContent>
                     <CardActions disableSpacing>
                         <Tooltip title="Demana més informació" placement="bottom">
                             <IconButton aria-label="Demana més informació">
-                                <InfoIcon />
+                                <EmailIcon color="primary" />
                             </IconButton>
                         </Tooltip>
                         <Tooltip title="Posat en contacte amb nosaltres" placement="bottom">
-                            <IconButton aria-label="Posat en contacte amb nosaltres utilitzant Whatsapp">
-                            <a target="_blank" href="https://wa.me/34693237337"><WhatsAppIcon/></a>
+                            <IconButton component="a" href={"https://wa.me/34" + course.users[0].phone} aria-label="Posat en contacte amb nosaltres utilitzant Whatsapp">
+                                <WhatsAppIcon color="success" />
                             </IconButton>
                         </Tooltip>
 

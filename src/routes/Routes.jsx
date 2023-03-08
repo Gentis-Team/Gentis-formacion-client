@@ -35,7 +35,7 @@ const authRoutes = {
         },
         {
 
-            path: 'single-course',
+            path: 'single-course/:id',
             element: <SingleCourse />,
         },
         {

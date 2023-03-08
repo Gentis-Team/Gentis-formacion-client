@@ -16,7 +16,7 @@ import { borderBottomColor } from '@mui/system';
 import { useCategoriesContext } from '@/services/providers/CategoriesContextProvider';
 
 
-const LoadingButton = styled(_LoadingButton)`
+const LoadingButton = styled( _LoadingButton )`
   padding: 0.6rem 0;
   background-color: #f9d13e;
   color: 'always.alwaysBlack';
@@ -28,7 +28,7 @@ const LoadingButton = styled(_LoadingButton)`
   }
 `;
 
-const LinkItem = styled(Link)`
+const LinkItem = styled( Link )`
   text-decoration: none;
   color: #2363eb;
   &:hover {
@@ -36,15 +36,15 @@ const LinkItem = styled(Link)`
   }
 `;
 
-const loginSchema = object({
+const loginSchema = object( {
   email: string()
-    .min(1, 'Email address is required')
-    .email('Email Address is invalid'),
+    .min( 1, 'Email address is required' )
+    .email( 'Email Address is invalid' ),
   password: string()
-    .min(1, 'Password is required')
-    .min(8, 'Password must be more than 8 characters')
-    .max(32, 'Password must be less than 32 characters'),
-});
+    .min( 1, 'Password is required' )
+    .min( 8, 'Password must be more than 8 characters' )
+    .max( 32, 'Password must be less than 32 characters' ),
+} );
 
 
 const LoginPage = () => {
@@ -52,35 +52,37 @@ const LoginPage = () => {
   const location = useLocation();
 
 
-  const from = ((location.state)?.from.pathname) || '/';
+  const from = ( ( location.state )?.from.pathname ) || '/';
 
 
-  const methods = useForm({
-    resolver: zodResolver(loginSchema),
-  });
+  const methods = useForm( {
+    resolver: zodResolver( loginSchema ),
+  } );
 
   const stateContext = useStateContext();
 
-    // API Get Current Logged-in user
-  const query = useQuery(['authUser'], getMeFn, {
+  // API Get Current Logged-in user
+  const query = useQuery( [ 'authUser' ], getMeFn, {
     enabled: false,
-    select: (data) => data.user,
+    select: ( data ) => data.user,
     retry: 1,
-    onSuccess: (data) => {
-      stateContext.dispatch({ type: 'SET_USER', payload: data });
+    onSuccess: ( data ) => {
+      stateContext.dispatch( { type: 'SET_USER', payload: data } );
     },
-  });
+  } );
 
-    //  API Login Mutation
+  //  API Login Mutation
   const { mutate: loginUser, isLoading } = useMutation(
-    (userData) => loginUserFn(userData),
+    ( userData ) => loginUserFn( userData ),
     {
       onSuccess: () => {
         query.refetch();
+
         toast.success('Ha iniciat sessió correctament');
         navigate(from);
+
       },
-      onError: (error) => useHandleError(error),
+      onError: ( error ) => useHandleError( error ),
     }
   );
 
@@ -90,37 +92,84 @@ const LoginPage = () => {
     formState: { isSubmitSuccessful },
   } = methods;
 
-  useEffect(() => {
-    if (isSubmitSuccessful) {
+  useEffect( () => {
+    if ( isSubmitSuccessful ) {
       reset();
     }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSubmitSuccessful]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ isSubmitSuccessful ] );
 
-  const onSubmitHandler = (values) => {
-        // ? Executing the loginUser Mutation
-    loginUser(values);
+  const onSubmitHandler = ( values ) => {
+    // ? Executing the loginUser Mutation
+    loginUser( values );
   };
 
-    return (
-        <Container
-            maxWidth={false}
-            sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                minHeight: '100vh',
-                backgroundColor: 'always.alwaysWhite',
-            }}
+  return (
+    <Container
+      maxWidth={ false }
+      sx={ {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '100vh',
+        backgroundColor: 'always.alwaysWhite',
+      } }
+    >
+      <Box
+        sx={ {
+          display: 'flex',
+          justifyContent: 'left',
+          alignItems: 'left',
+          flexDirection: 'column',
+        } }
+      >
+        <Typography
+          textAlign='left'
+          component='h1'
+          sx={ {
+            fontWeight: 800,
+            fontSize: { xs: '2rem', md: '3rem' },
+            mb: '.8rem',
+            letterSpacing: -1,
+          } }
         >
-            <Box
-                sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    flexDirection: 'column',
-                }}
+          Admin Login
+        </Typography>
+
+        <FormProvider { ...methods }>
+          <Box
+            component='form'
+            onSubmit={ handleSubmit( onSubmitHandler ) }
+            noValidate
+            autoComplete='off'
+            maxWidth='27rem'
+            width='100%'
+            sx={ {
+              backgroundColor: '#F4F8DD',
+              p: { xs: '1rem', sm: '1rem' },
+              borderRadius: '1rem',
+              boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.1)',
+              border: '2px solid #9eb424',
+            } }
+          >
+            <FormInput
+              name='email'
+              label='Email'
+              type='email'
+            />
+            <FormInput
+              name='password'
+              label='Contrasenya'
+              type='password'
+            />
+
+            <Typography
+              sx={ {
+                fontSize: '.8rem',
+                textAlign: 'right',
+              } }
             >
+
                 <Typography
                     textAlign='center'
                     component='h1'
@@ -196,6 +245,7 @@ const LoginPage = () => {
             </Box>
         </Container>
     );
+
 };
 
 export default LoginPage;

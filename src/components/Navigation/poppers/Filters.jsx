@@ -138,13 +138,14 @@ const filterCourses = (formData) => {
             />
             <FilterDuration durations={durations} onChange={handleDurationChange}/>
         </FormControl>
+        <Box padding={2}>
         <LoadingButton
-              sx={{ width:'50%', py: '0.8rem', backgroundColor: '#9EB423', color:'#000' }}
+              sx={{ width:'100%', py: '0.8rem', backgroundColor: '#9EB423', color:'#000' }}
               type='submit'
             >
               Cerca els cursos 
             </LoadingButton>
-            <Button sx={{ bgcolor: '#000000'}}></Button>
+            </Box>
       </Box>
     </React.Fragment>
   )

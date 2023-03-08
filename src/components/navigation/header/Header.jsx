@@ -26,7 +26,6 @@ import { withStyles } from '@mui/styles';
 
 
 const drawerWidth = 240;
-const navItems = ['Menu1', 'Menu2' , 'Menu3'];
 
 function DrawerAppBar(props) {
     const navigate = useNavigate();
@@ -56,19 +55,28 @@ function DrawerAppBar(props) {
     };
 
     const drawer = (
-        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center'}}>
+        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
             <Typography variant="h6" sx={{ my: 2 }}>
                 Gentis
             </Typography>
             <Divider />
             <List>
-                {navItems.map((item) => (
-                    <ListItem key={item} disablePadding>
-                        <ListItemButton sx={{ textAlign: 'center' }}>
-                            <ListItemText primary={item} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
+                {
+                    user && (
+                        <>
+                            <ListItem disablePadding>
+                                <ListItemButton onClick={() => navigate('/create')} sx={{ textAlign: 'center' }}>
+                                    <ListItemText primary={'Crear Curs'} />
+                                </ListItemButton>
+                            </ListItem>
+                            <ListItem  disablePadding>
+                                <ListItemButton onClick={onLogoutHandler} sx={{ textAlign: 'center' }}>
+                                    <ListItemText primary={'Tanca Sessió'} />
+                                </ListItemButton>
+                            </ListItem>
+                        </>
+                    )}
+
             </List>
         </Box>
     );
@@ -77,24 +85,25 @@ function DrawerAppBar(props) {
 
     return (
         <Box sx={{ display: 'flex' }}>
-           <CssBaseline/>
-            <AppBar component="nav" sx={{display: 'flex', flexDirection: 'row'}} >
-                    <IconButton 
-                        aria-label="arrow" 
-                        size="large"
-                        onClick={() => navigate('/')}
-                        sx={{ display: { sm: 'none' } }}
-                        >
-                        <ArrowBackIosIcon />
-                    </IconButton>
-                    <Typography
-                        variant="h6"
-                        component="div"
-                        sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', ml: 4}}
-                    >
-                        Gentis
-                    </Typography>
-                <Toolbar sx={{display: 'flex', justifyContent: 'end'}}>
+            <CssBaseline />
+            <AppBar component="nav" sx={{ display: 'flex', flexDirection: 'row' }} >
+                <IconButton
+                    aria-label="arrow"
+                    size="large"
+                    onClick={() => navigate('/')}
+                    sx={{ display: { sm: 'none' } }}
+                >
+                    <ArrowBackIosIcon />
+                </IconButton>
+                <Typography
+                    variant="h6"
+                    component="div"
+                    sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', ml: 4 }}
+                >
+                    Gentis
+                </Typography>
+                <Toolbar sx={{ display: 'flex', justifyContent: 'end' }}>
+                    { user && (
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -104,26 +113,30 @@ function DrawerAppBar(props) {
                     >
                         <MenuIcon />
                     </IconButton>
+                    )}
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-                        {navItems.map((item) => (
-                            <Button key={item} sx={{ color: '#fff' }}>
-                                {item}
-                            </Button>
-                        ))}
-                    </Box>
-                    {user && (
+                        {
+                            user && (
                                 <>
                                     <LoadingButton
                                         loading={isLoading}
-                                        onClick={() => navigate('/profile')}
+                                        onClick={() => navigate('/create')}
+                                        sx={{
+                                            color: "white"
+                                        }}
                                     >
-                                        Profile
+                                        Crear Curs
                                     </LoadingButton>
-                                    <LoadingButton onClick={onLogoutHandler}>
-                                        <AccountCircle></AccountCircle>
+                                    <LoadingButton onClick={onLogoutHandler}
+                                     sx={{
+                                        color: "white"
+                                    }}
+                                    >
+                                        Tanca Sessió
                                     </LoadingButton>
                                 </>
                             )}
+                    </Box>
                 </Toolbar>
             </AppBar>
             <Box component="nav">
@@ -152,7 +165,7 @@ function DrawerAppBar(props) {
 }
 
 DrawerAppBar.propTypes = {
-    
+
     window: PropTypes.func,
 };
 

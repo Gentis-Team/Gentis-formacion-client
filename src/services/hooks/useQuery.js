@@ -8,6 +8,7 @@ import { useGroupsContext } from '@/services/providers/GroupsContextProviders';
 import { getAllRequirementsFn } from '@/api/requirementApi';
 import { getAllGroupsFn } from '@/api/groupApi';
 import { getAllCategoriesFn } from '@/api/categoryApi';
+import { useCentersContext } from '../providers/CentersContextProvider';
 
 export function useQueryLocations(error) {
     const locationsContext = useLocationsContext();
@@ -52,6 +53,18 @@ export function useQueryCategories(error) {
       select: (data) => data.categories,
       onSuccess: (data) => {
         categoriesContext.dispatch({ type: 'SET_CATEGORIES', payload: data });
+      },
+      onError: (error) => useHandleError(error),
+    });
+}
+
+export function useQueryCenters(error) {
+  const centersContext = useCentersContext();
+
+  const {data: centers } = useQuery(['centers'], () => getAllCentersFn(), {
+      select: (data) => data.centers,
+      onSuccess: (data) => {
+        centersContext.dispatch({ type: 'SET_CENTERS', payload: data });
       },
       onError: (error) => useHandleError(error),
     });
