@@ -2,7 +2,7 @@ import React from 'react'
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import { FormLabel, Box } from '@mui/material';
+import { FormLabel, Box, Typography } from '@mui/material';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 const FilterDuration = (props) => {
     const { durations, ...otherProps } = props;

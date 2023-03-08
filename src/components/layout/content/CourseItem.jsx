@@ -35,11 +35,10 @@ import InfoIcon from '@mui/icons-material/Info';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import SettingsMenu from './SettingsMenu';
 import ReactWhatsapp from 'react-whatsapp';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Tags from '../../Navigation/tags/Tags';
 import EmailIcon from '@mui/icons-material/Email';
 
-const SERVER_ENDPOINT = import.meta.env.VITE_REACT_APP_SERVER_ENDPOINT;
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -53,6 +52,7 @@ const ExpandMore = styled((props) => {
 }));
 
 const CourseItem = ({ course }) => {
+    const navigate = useNavigate();
     const stateContext = useStateContext();
     const user = stateContext.state.authUser;
     const [expanded, setExpanded] = React.useState(false);
@@ -109,6 +109,7 @@ const CourseItem = ({ course }) => {
           bgcolor: 'background.paper',
           borderRadius: 2,
         }}
+        onClick={() => navigate('/single-course/' + course.id)}
         style={{ border: "2px solid #BED730" }}
  >
                     <CardHeader

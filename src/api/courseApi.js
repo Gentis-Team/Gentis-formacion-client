@@ -8,6 +8,7 @@ export const getAllCoursesFn = async () => {
 };
 
 export const getCourseFn = async (id) => {
+    console.log(id)
     const response = await authApi.get(`/api/courses/${id}`);
     return response.data;
 };
