@@ -123,6 +123,7 @@ export default function ColorButtons() {
       onSuccess: () => {
         queryClient.invalidateQueries(["courses"]);
         toast.success("Curs creat amb èxit");
+        navigate("/");
       },
       onError: (error) => {
         if (Array.isArray(error.response.data.error)) {
@@ -311,8 +312,7 @@ export default function ColorButtons() {
               m: 2,
               p: 2,
               bgcolor: "white",
-              width: "50%",
-              "@media (max-width: 400px)": {
+              "@media (min-width: 400px)": {
                 width: "90%",
               },
             }}
@@ -535,6 +535,21 @@ export default function ColorButtons() {
                 </Stack>
               </Stack>
             </List>
+            <LoadingButton 
+                variant="contained"
+                sx={{
+                  
+                  bgcolor: "#BED730",
+                  color: "black",
+                  borderRadius: "16px",
+                  width: "100%",
+                  height: "44px",
+                }}
+                type="submit"
+                loading={isLoading}
+              >
+                Desa
+              </LoadingButton>
           </Box>
           <Box
             sx={{
