@@ -9,7 +9,7 @@ const Search = (props) => {
             {...props}
             fuseOptions={{ keys: ["name", "category"] }} // Search on both fields
             resultStringKeyName="name" // String to display in the results
-            showIcon={false}
+            placeholder="Cerca cursos"
             styling={{
               height: "34px",
               borderRadius: "1rem",

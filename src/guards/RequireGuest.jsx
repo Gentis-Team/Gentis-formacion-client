@@ -5,7 +5,7 @@ import { getMeFn } from '@/api/authApi';
 import { useStateContext } from '@/services/providers/StateContextProvider';
 import FullScreenLoader from '@/components/layout/loaders/FullScreenLoader';
 
-const RequireGuest = ({ allowedRoles }) => {
+const RequireGuest = () => {
     const [cookies] = useCookies(['logged_in']);
     const location = useLocation();
     const stateContext = useStateContext();

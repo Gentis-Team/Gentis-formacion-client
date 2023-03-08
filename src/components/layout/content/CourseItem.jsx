@@ -35,10 +35,10 @@ import InfoIcon from '@mui/icons-material/Info';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import SettingsMenu from './SettingsMenu';
 import ReactWhatsapp from 'react-whatsapp';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Tags from '../../Navigation/tags/Tags';
+import EmailIcon from '@mui/icons-material/Email';
 
-const SERVER_ENDPOINT = import.meta.env.VITE_REACT_APP_SERVER_ENDPOINT;
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -52,6 +52,7 @@ const ExpandMore = styled((props) => {
 }));
 
 const CourseItem = ({ course }) => {
+    const navigate = useNavigate();
     const stateContext = useStateContext();
     const user = stateContext.state.authUser;
     const [expanded, setExpanded] = React.useState(false);
@@ -69,7 +70,7 @@ const CourseItem = ({ course }) => {
     const { mutate: deleteCourse } = useMutation((id) => deleteCourseFn(id), {
         onSuccess(data) {
             queryClient.invalidateQueries('course');
-            toast.success('Course deleted successfully');
+            toast.success('El curs s\'ha suprimit correctament');
         },
         onError(error) {
             if (Array.isArray((error).data.error)) {
@@ -87,7 +88,7 @@ const CourseItem = ({ course }) => {
     });
 
     const onDeleteHandler = (id) => {
-        if (window.confirm('Are you sure')) {
+        if (window.confirm('Està segur')) {
             deleteCourse(id);
         }
     };
@@ -134,20 +135,22 @@ const CourseItem = ({ course }) => {
                         open={open}
                         onClose={handleClose}
                         setOpenCourseModal={setOpenCourseModal} 
+                        onDeleteHandler={onDeleteHandler}
+                        courseId={course.id}
                     />
-                    <CardContent>
+                    <CardContent onClick={() => navigate('/single-course/' + course.id)}>
                         <Typography variant="body2" color="text.secondary">
                             <Tags course={course}/>
                         </Typography>
                     </CardContent>
                     <CardActions disableSpacing>
                         <Tooltip title="Demana més informació" placement="bottom">
-                            <IconButton aria-label="Demana més informació">
-                                <InfoIcon color="primary" />
+                            <IconButton onClick={() => navigate('/new-student')}aria-label="Demana més informació">
+                                <EmailIcon color="primary" />
                             </IconButton>
                         </Tooltip>
                         <Tooltip title="Posat en contacte amb nosaltres" placement="bottom">
-                            <IconButton component="a" href={"https://wa.me/34" + course.users[0].phone} aria-label="Posat en contacte amb nosaltres utilitzant Whatsapp">
+                            <IconButton component="a" href={"https://wa.me/34" + course.users[0].phone} aria-label="Posa't en contacte amb nosaltres utilitzant Whatsapp">
                                 <WhatsAppIcon color="success" />
                             </IconButton>
                         </Tooltip>

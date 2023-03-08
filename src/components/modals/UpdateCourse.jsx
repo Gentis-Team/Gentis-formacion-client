@@ -9,6 +9,7 @@ import {
     Controller,
     FormProvider,
     useForm,
+    useFormContext,
   } from 'react-hook-form';
   import { object, string, z } from 'zod';
   import { zodResolver } from '@hookform/resolvers/zod';
@@ -20,15 +21,17 @@ import {
   import { updateCourseFn } from '@/api/courseApi';
   import FileUploader from '@/components/layout/forms/inputs/FileUploader';
   import useHandleError from '@/services/hooks/useHandleError';
-import { bgcolor } from '@mui/system';
   
   
-  const updateCourseSchema = object({
-    code: string(),
-    name: string().max(70),
-    description: string(),
-    //image: z.instanceof(File),
-  }).partial();
+  const updateCourseSchema = object({ 
+    code: string()
+    .min( 1, 'El codi és obligatori' ),
+    name: string()
+    .min( 1, 'El titol és obligatori' )
+    .max(70, 'El titol no pot ser més llarg de 70 caràcters'),
+    description: string()
+    .min(1, 'La descripció és obligatoria')
+    }).partial();
   
   
   const UpdateCourse = ({ setOpenCourseModal, course }) => {
@@ -39,7 +42,7 @@ import { bgcolor } from '@mui/system';
       {
         onSuccess: () => {
           queryClient.invalidateQueries(['courses']);
-          toast.success('Course updated successfully');
+          toast.success('Curs creat amb èxit');
           setOpenCourseModal(false);
         },
         onError: (error) => useHandleError(error),
@@ -55,6 +58,7 @@ import { bgcolor } from '@mui/system';
     } = methods;
   
     useEffect(() => {
+      
       if (isSubmitting) {
         methods.reset();
       }
@@ -63,6 +67,7 @@ import { bgcolor } from '@mui/system';
   
     useEffect(() => {
       if (course) {
+        
         methods.reset({
           code: course.code,
           name: course.name,
@@ -73,21 +78,13 @@ import { bgcolor } from '@mui/system';
     }, [course]);
   
     const onSubmitHandler = (values) => {
-      /* const formData = new FormData();
-      const filteredFormData = pickBy(
-        values,
-        (value) => value !== '' && value !== undefined
-      );
-      const { image, ...otherFormData } = filteredFormData;
-      if (image) {
-        formData.append('image', image);
-      }
-      formData.append('data', JSON.stringify(otherFormData)); */
+      console.log('hola')
       const formData = values
       const id = course.id;
       updateCourse({ id, formData });
     };
-  
+
+   
     return (
       <Box sx={{ bgcolor:'white' }}>
         <Box display='flex' justifyContent='space-between' sx={{ mb: 3 }}>
@@ -124,7 +121,7 @@ import { bgcolor } from '@mui/system';
               render={({ field }) => (
                 <TextareaAutosize
                   {...field}
-                  placeholder='Course Details'
+                  placeholder='Descripció del curs'
                   minRows={8}
                   style={{
                     width: '100%',
@@ -139,7 +136,6 @@ import { bgcolor } from '@mui/system';
                 />
               )}
             />
-            <FileUploader name='image' />
             <LoadingButton
               variant='contained'
               fullWidth

@@ -43,7 +43,7 @@ const Filters = (props) => {
       select: (data) => data.courses,
       onSuccess: (data) => {
         filteredCoursesContext.dispatch({ type: 'SET_FILTERED_COURSES', payload: data });
-        toast.success('Courses filtered successfully');
+        toast.success('Cursos filtrats correctament');
       },
       onError: (error) => useHandleError(error),
     }
@@ -138,12 +138,14 @@ const filterCourses = (formData) => {
             />
             <FilterDuration durations={durations} onChange={handleDurationChange}/>
         </FormControl>
+        <Box padding={2}>
         <LoadingButton
-              sx={{ width:'50%', py: '0.8rem', backgroundColor: '#9EB423', color:'#000' }}
+              sx={{ width:'100%', py: '0.8rem', backgroundColor: '#9EB423', color:'#000' }}
               type='submit'
             >
               Cerca els cursos 
             </LoadingButton>
+            </Box>
       </Box>
     </React.Fragment>
   )

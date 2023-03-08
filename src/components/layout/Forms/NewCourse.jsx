@@ -38,6 +38,19 @@ import { useRequirementsContext } from "@/services/providers/RequirementsContext
 import { Box } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { useNavigate } from "react-router-dom";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const newTheme = createTheme();
+
+newTheme.typography.h3 = {
+  fontSize: '2rem',
+  '@media (min-width:600px)': {
+    fontSize: '4rem',
+  },
+  [newTheme.breakpoints.up('md')]: {
+    fontSize: '4rem',
+  },
+};
 
 export default function ColorButtons() {
   const categoriesContext = useCategoriesContext();

@@ -31,24 +31,26 @@ const LinkItem = styled( Link )`
   }
 `;
 
-const registerSchema = object( {
-  name: string().min( 1, 'Full name is required' ).max( 100 ),
+
+const registerSchema = object({
+  name: string().min(1, 'El nom complet és obligatori').max(100),
   email: string()
-    .min( 1, 'Email address is required' )
-    .email( 'Email Address is invalid' ),
+    .min(1, 'L\'adreça electrònica és obligatoria')
+    .email('L\'adreça electrònica és incorrecte'),
   phone: string()
-    .min( 1, 'Phone number is required' ),
+    .min(1, 'El telèfon és obligatori'),
   role: string()
-    .min( 1, 'Role is required' ),
+    .min(1, 'El rol és obligatori'),
   password: string()
-    .min( 1, 'Password is required' )
-    .min( 8, 'Password must be more than 8 characters' )
-    .max( 32, 'Password must be less than 32 characters' ),
-  passwordConfirm: string().min( 1, 'Please confirm your password' ),
-} ).refine( ( data ) => data.password === data.passwordConfirm, {
-  path: [ 'passwordConfirm' ],
-  message: 'Passwords do not match',
-} );
+    .min(1, 'La contrasenya és obligatoria')
+    .min(8, 'La contrasenya ha de tenir més de 8 caràcters')
+    .max(32, 'La contrasenya ha de tenir menys de 32 caràcters'),
+  passwordConfirm: string().min(1, 'Si us plau, confirmeu la vostra contrasenya'),
+}).refine((data) => data.password === data.passwordConfirm, {
+  path: ['passwordConfirm'],
+  message: 'Les contrasenyes no coincideixen',
+});
+
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -139,7 +141,6 @@ const RegisterPage = () => {
             component='form'
             onSubmit={ handleSubmit( onSubmitHandler ) }
             noValidate
-            autoComplete='off'
             maxWidth='27rem'
             width='100%'
             sx={ {
@@ -151,8 +152,8 @@ const RegisterPage = () => {
             } }
           >
             <FormInput name='name' label='Nom' />
-            <FormInput name='name' label='Cognoms' />
-            <FormInput name='role' label='D.N.I' />
+            <FormInput name='role' label='Rol' />
+            <FormInput name='phone' label='Telefon' />
             <FormInput name='email' label='Email' type='email' />
             <FormInput name='password' label='Contrasenya' type='password' />
             <FormInput
@@ -175,41 +176,6 @@ const RegisterPage = () => {
             >
               Desa
             </LoadingButton>
-            <Box
-              mt={ 4 }
-              sx={ {
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexDirection: 'row',
-                backgroundColor: '#fff',
-                borderRadius: '1rem',
-                border: '2px solid #9eb424',
-              } }>
-              <Typography sx={ {
-                fontSize: '0.9rem',
-                m: '1rem'
-              } }>
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                  <path d="M14.6666 9.33329H17.3333V12H14.6666V9.33329ZM14.6666 14.6666H17.3333V22.6666H14.6666V14.6666ZM16 2.66663C8.63996 2.66663 2.66663 8.63996 2.66663 16C2.66663 23.36 8.63996 29.3333 16 29.3333C23.36 29.3333 29.3333 23.36 29.3333 16C29.3333 8.63996 23.36 2.66663 16 2.66663ZM16 26.6666C10.12 26.6666 5.33329 21.88 5.33329 16C5.33329 10.12 10.12 5.33329 16 5.33329C21.88 5.33329 26.6666 10.12 26.6666 16C26.6666 21.88 21.88 26.6666 16 26.6666Z" fill="#78891A" />
-                </svg>
-              </Typography>
-              <Typography sx={ {
-                fontSize: '0.9rem',
-                m: '1rem'
-              } }>
-                El nou administrador rebrá un email amb una contrasenya temporanea. Aquí el llistat dels administradors.
-              </Typography>
-            </Box>
-            <Typography sx={ {
-              fontSize: '0.9rem',
-              color: '#000',
-              textAlign: 'center',
-              mt: '1rem'
-            } }>
-              Ja tens compte?{ ' ' }Entra
-              <LinkItem to='/login'> aquí</LinkItem>
-            </Typography>
           </Box>
         </FormProvider>
       </Box>

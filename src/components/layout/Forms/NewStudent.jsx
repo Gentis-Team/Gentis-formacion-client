@@ -12,42 +12,87 @@ import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import Checkbox from "@mui/material/Checkbox";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createStudentFn } from "@/api/studentsApi";
+import { toast } from "react-toastify";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate } from "react-router-dom";
+
+const newTheme = createTheme();
+
+newTheme.typography.h3 = {
+  fontSize: '2rem',
+  '@media (min-width:600px)': {
+    fontSize: '4rem',
+  },
+  [newTheme.breakpoints.up('md')]: {
+    fontSize: '4rem',
+  },
+};
 
 const NewStudent = () => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [formValues, setFormValues] = useState({
-    nom: "",
-    cognoms: "",
-    telefon: "",
+    name: "",
+    surname: "",
+    phone: "",
     email: "",
   });
   const [formErrors, setFormErrors] = useState({
-    nom: "",
-    cognoms: "",
-    telefon: "",
+    name: "",
+    surname: "",
+    phone: "",
     email: "",
     isChecked,
   });
 
-  const handleClickOpen = () => {
+  const queryClient = useQueryClient();
+  const { mutate: createStudent } = useMutation(
+    (student) => createStudentFn(student),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["courses"]);
+        toast.success("T'has apuntat correctament!");
+        navigate('/')
+      },
+      onError: (error) => {
+        if (Array.isArray(error.response.data.error)) {
+          error.data.error.forEach((el) =>
+            toast.error(el.message, {
+              position: "top-right",
+            })
+          );
+        } else {
+          toast.error(error.response.data.message, {
+            position: "top-right",
+          });
+        }
+      },
+    }
+  );
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
     if (
-      formValues.nom !== "" &&
-      formValues.cognoms !== "" &&
-      formValues.telefon !== "" &&
+      formValues.name !== "" &&
+      formValues.surname !== "" &&
+      formValues.phone !== "" &&
       formValues.email !== "" &&
       isChecked
     ) {
-      setOpen(true);
+      createStudent(formValues);
     } else {
       setFormErrors({
-        nom: formValues.nom === "" ? "El camp Nom és obligatori" : "",
-        cognoms:
-          formValues.cognoms === "" ? "El camp Cognoms és obligatori" : "",
-        telefon:
-          formValues.telefon === "" ? "El camp Telèfon és obligatori" : "",
+        name: formValues.name === "" ? "El camp Nom és obligatori" : "",
+        surname:
+          formValues.surname === "" ? "El camp Cognoms és obligatori" : "",
+        phone:
+          formValues.phone === "" ? "El camp Telèfon és obligatori" : "",
         email: formValues.email === "" ? "El camp Email és obligatori" : "",
-        check: !formValues.check ? "Debes aceptar el aviso" : "",
+        check: !formValues.check ? "Has d'acceptar que ho has llegit" : "",
       });
     }
   };
@@ -67,6 +112,9 @@ const NewStudent = () => {
     }
   };
 
+
+
+
   return (
     <form>
       <Box
@@ -80,7 +128,7 @@ const NewStudent = () => {
         }}
       >
         <Grid sx={{ ml: -10, color: "black" }}>
-          <Typography variant="h3">Preinscru-te</Typography>
+          <Typography variant="h3">Preinscriu-te</Typography>
           <Typography variant="h4">al curs</Typography>
         </Grid>
         <Grid
@@ -98,7 +146,7 @@ const NewStudent = () => {
           <Box sx={{ m: 2 }}>
             <TextField
               sx={{ m: 2, width: 300, bgcolor: "white" }}
-              id="nom"
+              id="name"
               label="Nom"
               InputLabelProps={{
                 style: { color: "black" },
@@ -107,16 +155,16 @@ const NewStudent = () => {
               focused
               type="text"
               required
-              value={formValues.nom}
+              value={formValues.name}
               onChange={handleChange}
             />
-            {formErrors.nom !== "" && (
-              <p style={{ color: "red" }}>{formErrors.nom}</p>
+            {formErrors.name !== "" && (
+              <p style={{ color: "red" }}>{formErrors.name}</p>
             )}
 
             <TextField
               sx={{ m: 2, width: 300, bgcolor: "white" }}
-              id="cognoms"
+              id="surname"
               label="Cognoms"
               InputLabelProps={{
                 style: { color: "black" },
@@ -124,16 +172,16 @@ const NewStudent = () => {
               InputProps={{ inputProps: { style: { color: "black" } } }}
               focused
               required
-              value={formValues.cognoms}
+              value={formValues.surname}
               onChange={handleChange}
             />
-            {formErrors.cognoms !== "" && (
-              <p style={{ color: "red" }}>{formErrors.cognoms}</p>
+            {formErrors.surname !== "" && (
+              <p style={{ color: "red" }}>{formErrors.surname}</p>
             )}
             <TextField
               required
               sx={{ m: 2, width: 300, bgcolor: "white" }}
-              id="telefon"
+              id="phone"
               label="Teléfon"
               type="number"
               InputLabelProps={{
@@ -141,11 +189,11 @@ const NewStudent = () => {
               }}
               InputProps={{ inputProps: { style: { color: "black" } } }}
               focused
-              value={formValues.telefon}
+              value={formValues.phone}
               onChange={handleChange}
             />
-            {formErrors.telefon !== "" && (
-              <p style={{ color: "red" }}>{formErrors.telefon}</p>
+            {formErrors.phone !== "" && (
+              <p style={{ color: "red" }}>{formErrors.phone}</p>
             )}
             <TextField
               sx={{ m: 2, width: 300, bgcolor: "white" }}
@@ -193,24 +241,26 @@ const NewStudent = () => {
             GIRONA
           </Typography>
           <Box sx={{ m: 1, }}>
-            <Grid sx={{display: "flex",flexDirection: "row",
+            <Grid sx={{
+              display: "flex", flexDirection: "row",
               justifyItems: "center",
-              alignItems: "center" ,color:'black'}}>
+              alignItems: "center", color: 'black'
+            }}>
               <Checkbox
-              sx={{
-                color: "black",
-                "&.Mui-checked": {
-                  color: "#BED730",
-                },
-              }}
-              required
-              value={isChecked}
-              onChange={handleChange}
-              id="check"
-              name="Confirmo que he leído este aviso."
-              
-            />
-            <Typography variant="h7"> Confirmo que he leído este aviso.</Typography>
+                sx={{
+                  color: "black",
+                  "&.Mui-checked": {
+                    color: "#BED730",
+                  },
+                }}
+                required
+                value={isChecked}
+                onChange={handleChange}
+                id="check"
+                name="Confirmo que he leído este aviso."
+
+              />
+              <Typography variant="h7"> Confirmo que he llegit aquest avís.</Typography>
             </Grid>
             {formErrors.check !== "" && (
               <p style={{ color: "red" }}>{formErrors.check}</p>
@@ -227,7 +277,7 @@ const NewStudent = () => {
               borderRadius: "16px",
             }}
             variant="outlined"
-            onClick={handleClickOpen}
+            onClick={handleSubmit}
           >
             Confirma la preinscripciò
           </Button>

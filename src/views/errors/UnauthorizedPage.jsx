@@ -5,7 +5,7 @@ const UnauthorizePage = () => {
     <Container maxWidth='lg'>
       <Box
         sx={{
-          backgroundColor: '#ece9e9',
+          pb: '50rem',
           mt: '2rem',
           height: '15rem',
           display: 'flex',
@@ -18,7 +18,7 @@ const UnauthorizePage = () => {
           component='h1'
           sx={{ color: '#1f1e1e', fontWeight: 500 }}
         >
-          Unauthorized Page
+          Pagina no autoritzada
         </Typography>
       </Box>
     </Container>
