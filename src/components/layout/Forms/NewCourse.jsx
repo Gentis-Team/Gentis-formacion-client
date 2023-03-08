@@ -109,7 +109,7 @@ export default function ColorButtons() {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["courses"]);
-        toast.success("Course created successfully");
+        toast.success("Curs creat amb èxit");
       },
       onError: (error) => {
         if (Array.isArray(error.response.data.error)) {

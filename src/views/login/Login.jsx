@@ -37,12 +37,12 @@ const LinkItem = styled( Link )`
 
 const loginSchema = object( {
   email: string()
-    .min( 1, 'Email address is required' )
-    .email( 'Email Address is invalid' ),
+    .min( 1, 'L\'adreça de correu electrònic és necessària' )
+    .email( 'L\'adreça electrònica no és vàlida' ),
   password: string()
-    .min( 1, 'Password is required' )
-    .min( 8, 'Password must be more than 8 characters' )
-    .max( 32, 'Password must be less than 32 characters' ),
+    .min( 1, 'La contrasenya és obligatoria' )
+    .min( 8, 'La contrasenya ha de tenir més de 8 caràcters' )
+    .max( 32, 'La contrasenya ha de tenir menys de 32 caràcters' ),
 } );
 
 

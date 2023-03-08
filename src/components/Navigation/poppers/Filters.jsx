@@ -43,7 +43,7 @@ const Filters = (props) => {
       select: (data) => data.courses,
       onSuccess: (data) => {
         filteredCoursesContext.dispatch({ type: 'SET_FILTERED_COURSES', payload: data });
-        toast.success('Courses filtered successfully');
+        toast.success('Cursos filtrats correctament');
       },
       onError: (error) => useHandleError(error),
     }

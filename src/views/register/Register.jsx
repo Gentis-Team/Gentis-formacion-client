@@ -35,8 +35,8 @@ const LinkItem = styled( Link )`
 const registerSchema = object({
   name: string().min(1, 'El nom complet és obligatori').max(100),
   email: string()
-    .min(1, 'L\'email és obligatori')
-    .email('L\'email és incorrecte'),
+    .min(1, 'L\'adreça electrònica és obligatoria')
+    .email('L\'adreça electrònica és incorrecte'),
   phone: string()
     .min(1, 'El telèfon és obligatori'),
   role: string()

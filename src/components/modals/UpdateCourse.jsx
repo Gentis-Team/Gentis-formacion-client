@@ -39,7 +39,7 @@ import { bgcolor } from '@mui/system';
       {
         onSuccess: () => {
           queryClient.invalidateQueries(['courses']);
-          toast.success('Course updated successfully');
+          toast.success('Curs creat amb èxit');
           setOpenCourseModal(false);
         },
         onError: (error) => useHandleError(error),

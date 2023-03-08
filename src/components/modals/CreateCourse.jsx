@@ -34,7 +34,7 @@ const CreateCourse = ({ setOpenCourseModal }) => {
         {
             onSuccess: () => {
                 queryClient.invalidateQueries(['courses']);
-                toast.success('Course created successfully');
+                toast.success('Curs creat amb èxit');
                 setOpenCourseModal(false);
             },
             onError: (error) => {

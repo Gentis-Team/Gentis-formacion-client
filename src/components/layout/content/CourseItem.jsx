@@ -70,7 +70,7 @@ const CourseItem = ({ course }) => {
     const { mutate: deleteCourse } = useMutation((id) => deleteCourseFn(id), {
         onSuccess(data) {
             queryClient.invalidateQueries('course');
-            toast.success('Course deleted successfully');
+            toast.success('El curs s\'ha suprimit correctament');
         },
         onError(error) {
             if (Array.isArray((error).data.error)) {
@@ -88,7 +88,7 @@ const CourseItem = ({ course }) => {
     });
 
     const onDeleteHandler = (id) => {
-        if (window.confirm('Are you sure')) {
+        if (window.confirm('Està segur')) {
             deleteCourse(id);
         }
     };
@@ -149,7 +149,7 @@ const CourseItem = ({ course }) => {
                             </IconButton>
                         </Tooltip>
                         <Tooltip title="Posat en contacte amb nosaltres" placement="bottom">
-                            <IconButton component="a" href={"https://wa.me/34" + course.users[0].phone} aria-label="Posat en contacte amb nosaltres utilitzant Whatsapp">
+                            <IconButton component="a" href={"https://wa.me/34" + course.users[0].phone} aria-label="Posa't en contacte amb nosaltres utilitzant Whatsapp">
                                 <WhatsAppIcon color="success" />
                             </IconButton>
                         </Tooltip>
