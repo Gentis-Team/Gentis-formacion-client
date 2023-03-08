@@ -37,6 +37,7 @@ import SettingsMenu from './SettingsMenu';
 import ReactWhatsapp from 'react-whatsapp';
 import { Link } from 'react-router-dom';
 import Tags from '../../Navigation/tags/Tags';
+import EmailIcon from '@mui/icons-material/Email';
 
 const SERVER_ENDPOINT = import.meta.env.VITE_REACT_APP_SERVER_ENDPOINT;
 
@@ -143,7 +144,7 @@ const CourseItem = ({ course }) => {
                     <CardActions disableSpacing>
                         <Tooltip title="Demana més informació" placement="bottom">
                             <IconButton aria-label="Demana més informació">
-                                <InfoIcon color="primary" />
+                                <EmailIcon color="primary" />
                             </IconButton>
                         </Tooltip>
                         <Tooltip title="Posat en contacte amb nosaltres" placement="bottom">

@@ -2,7 +2,7 @@ import React from 'react'
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import { FormLabel, Grid, Box } from '@mui/material';
+import { FormLabel, Grid, Box, Typography } from '@mui/material';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 
 const FilterLocations = (props) => {
@@ -10,7 +10,7 @@ const FilterLocations = (props) => {
   return (
     <React.Fragment>
       <Box sx={{ backgroundColor: 'background.filter', }}>
-        <FormLabel component="legend" ><Box sx={{ display: "flex", alignItems: 'center', gap: 2, py: 1, px: 3 }}><LocationOnOutlinedIcon />Seu del curs</Box></FormLabel>
+        <FormLabel component="legend"  ><Box sx={{ display: "flex", alignItems: 'center', gap: 2, py: 1, px: 3 }}><LocationOnOutlinedIcon /><Typography sx={{ fontWeight:'bold'}}>Seu del curs</Typography></Box></FormLabel>
       </Box>
       <FormGroup sx={{ p: 3 }} >
         <Grid container>

@@ -7,7 +7,7 @@ const FilterRequirements = (props) => {
   return (
     <React.Fragment>
       <Box sx={{ backgroundColor: 'background.filter'}}>
-        <FormLabel component="legend" ><Box sx={{ display: "flex", alignItems: 'center', gap: 2, py: 1, px: 3 }}><AssignmentTurnedInOutlinedIcon />Requisits d'acces</Box></FormLabel>
+        <FormLabel component="legend" ><Box sx={{ display: "flex", alignItems: 'center', gap: 2, py: 1, px: 3 }}><AssignmentTurnedInOutlinedIcon /><Typography sx={{ fontWeight:'bold'}}>Requisits d'acces</Typography></Box></FormLabel>
       </Box>
       <RadioGroup
         sx={{ p: 3 }}
