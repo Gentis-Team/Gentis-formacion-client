@@ -89,6 +89,7 @@ const Home = () => {
   }
   return (
     <>
+
       <Grid container spacing={3} sx={{ display: 'flex', direction: 'row' }}>
         <Grid item xs>
           <ThemeProvider theme={newTheme}>
@@ -131,6 +132,7 @@ const Home = () => {
           <Grid container paddingTop={5}>
             <Grid item container xs={12} md={8} spacing={2}>
               {!query ? courses?.map((course) => (
+
                 <CourseItem key={course.id} course={course} />
               ))
                 : query?.map((course) => (

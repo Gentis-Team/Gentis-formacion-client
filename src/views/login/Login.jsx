@@ -77,8 +77,10 @@ const LoginPage = () => {
     {
       onSuccess: () => {
         query.refetch();
-        toast.success( 'You successfully logged in' );
-        navigate( from );
+
+        toast.success('Ha iniciat sessió correctament');
+        navigate(from);
+
       },
       onError: ( error ) => useHandleError( error ),
     }
@@ -167,54 +169,83 @@ const LoginPage = () => {
                 textAlign: 'right',
               } }
             >
-              <LinkItem
-                to='/'
-                style={ {
-                  color: 'always.alwaysBlack',
-                  textDecoration: 'none',
-                } }
-              >
-                Has oblidat la teva contrasenya?
-              </LinkItem>
-            </Typography>
 
-            <LoadingButton
-              variant='contained'
-              sx={ {
-                mt: 1,
-                color: '#000',
-                backgroundColor: '#BED730', borderRadius: 4
-              } }
-              fullWidth
-              disableElevation
-              type='submit'
-              loading={ isLoading }
-            >
-              Entra
-            </LoadingButton>
-          </Box>
-          <Box
-            mt={ 4 }
-            sx={ {
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              flexDirection: 'row',
-              backgroundColor: 'always.alwaysWhite',
-              borderRadius: 2,
-            } }>
-            {/* <Typography sx={ { fontSize: '1rem', textAlign: 'right' } }>
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                <path d="M14.6666 9.33329H17.3333V12H14.6666V9.33329ZM14.6666 14.6666H17.3333V22.6666H14.6666V14.6666ZM16 2.66663C8.63996 2.66663 2.66663 8.63996 2.66663 16C2.66663 23.36 8.63996 29.3333 16 29.3333C23.36 29.3333 29.3333 23.36 29.3333 16C29.3333 8.63996 23.36 2.66663 16 2.66663ZM16 26.6666C10.12 26.6666 5.33329 21.88 5.33329 16C5.33329 10.12 10.12 5.33329 16 5.33329C21.88 5.33329 26.6666 10.12 26.6666 16C26.6666 21.88 21.88 26.6666 16 26.6666Z" fill="#78891A" />
-              </svg></Typography>
-            <Typography sx={ { fontSize: '0.9rem', m: '1rem' } }>
-              Si no tens accés pots demanar-ho<LinkItem to='/register'> aquí</LinkItem>
-            </Typography> */}
-          </Box>
-        </FormProvider>
-      </Box>
-    </Container>
-  );
+                <Typography
+                    textAlign='center'
+                    component='h1'
+                    sx={{
+                        color: 'always.alwaysBlack',
+                        fontWeight: 600,
+                        fontSize: { xs: '2rem', md: '3rem' },
+                        mb: 2,
+                        letterSpacing: 1,
+                    }}
+                >
+                    Admin Login
+                </Typography>
+                <Typography
+                    variant='body1'
+                    component='h2'
+                    sx={{ color: '#e5e7eb', mb: 2 }}
+                >
+                    Inicia sessió per tenir accés!
+                </Typography>
+
+                <FormProvider {...methods}>
+                    <Box
+                        component='form'
+                        onSubmit={handleSubmit(onSubmitHandler)}
+                        noValidate
+                        autoComplete='off'
+                        maxWidth='27rem'
+                        width='100%'
+                        sx={{
+                            backgroundColor: '#F4F8DD',
+                            p: { xs: '1rem', sm: '2rem' },
+                            borderRadius: 2,
+                            border:' 2px solid #9EB423'
+                        }}
+                    >
+                        <FormInput name='email' label='Email' type='email' />
+                        <FormInput name='password' label='Contrasenya' type='password' />
+
+                        <Typography
+                            sx={{ fontSize: '0.9rem', mb: '1rem', textAlign: 'right' }}
+                        >
+                            <LinkItem to='/' style={{ color: 'always.alwaysBlack' }}>
+                                Has oblidat la teva contrasenya?
+                            </LinkItem>
+                        </Typography>
+
+                        <LoadingButton
+                            variant='contained'
+                            sx={{ mt: 1, color:'always.alwaysBlack', backgroundColor:'#9EB423', borderRadius: 4 }}
+                            fullWidth
+                            disableElevation
+                            type='submit'
+                            loading={isLoading}
+                        >
+                            Entrar
+                        </LoadingButton>
+                    </Box>
+                    
+                    <Box
+                        mt={4}
+                        sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        flexDirection: 'row',
+                        backgroundColor: 'always.alwaysWhite',
+                        borderRadius: 2,
+                        border:' 2px solid #9EB423'
+                        }}>
+                        </Box>
+                </FormProvider>
+            </Box>
+        </Container>
+    );
+
 };
 
 export default LoginPage;

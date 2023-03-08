@@ -124,7 +124,7 @@ import { bgcolor } from '@mui/system';
               render={({ field }) => (
                 <TextareaAutosize
                   {...field}
-                  placeholder='Course Details'
+                  placeholder='Descripció del curs'
                   minRows={8}
                   style={{
                     width: '100%',

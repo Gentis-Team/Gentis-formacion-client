@@ -30,7 +30,7 @@ const Footer = () => {
         <Box>© Gentis 2023</Box>
         
         <Button onClick={handleClick3}>
-          <img src="../../public/logo-Gentis-blanc-800px-768x279 1.png" alt="Gentis" />
+          <img src="../../logo-Gentis-blanc-800px-768x279 1.png" alt="Gentis" />
         </Button>
       </BottomNavigation>
 

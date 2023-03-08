@@ -80,7 +80,7 @@ const NewStudent = () => {
         }}
       >
         <Grid sx={{ ml: -10, color: "black" }}>
-          <Typography variant="h3">Preinscru-te</Typography>
+          <Typography variant="h3">Preinscriu-te</Typography>
           <Typography variant="h4">al curs</Typography>
         </Grid>
         <Grid
@@ -210,7 +210,7 @@ const NewStudent = () => {
               name="Confirmo que he leído este aviso."
               
             />
-            <Typography variant="h7"> Confirmo que he leído este aviso.</Typography>
+            <Typography variant="h7"> Confirmo que he llegit aquest avís.</Typography>
             </Grid>
             {formErrors.check !== "" && (
               <p style={{ color: "red" }}>{formErrors.check}</p>
