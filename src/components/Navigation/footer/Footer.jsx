@@ -34,7 +34,7 @@ const Footer = () => {
           color: 'white',
           }}>Política de Privacitat</Button>
         <Button onClick={handleClick3}>
-          <img src="../../public/logo-Gentis-blanc-800px-768x279 1.png" alt="Gentis" />
+          <img src="../../logo-Gentis-blanc-800px-768x279 1.png" alt="Gentis" />
         </Button>
       </BottomNavigation>
   )

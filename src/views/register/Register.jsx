@@ -32,22 +32,22 @@ const LinkItem = styled(Link)`
 `;
 
 const registerSchema = object({
-  name: string().min(1, 'Full name is required').max(100),
+  name: string().min(1, 'El nom complet és obligatori').max(100),
   email: string()
-    .min(1, 'Email address is required')
-    .email('Email Address is invalid'),
+    .min(1, 'L\'email és obligatori')
+    .email('L\'email és incorrecte'),
   phone: string()
-    .min(1, 'Phone number is required'),
+    .min(1, 'El telèfon és obligatori'),
   role: string()
-    .min(1, 'Role is required'),
+    .min(1, 'El role és obligatori'),
   password: string()
-    .min(1, 'Password is required')
-    .min(8, 'Password must be more than 8 characters')
-    .max(32, 'Password must be less than 32 characters'),
-  passwordConfirm: string().min(1, 'Please confirm your password'),
+    .min(1, 'La contrasenya és obligatoria')
+    .min(8, 'La contrasenya ha de tenir més de 8 caràcters')
+    .max(32, 'La contrasenya ha de tenir menys de 32 caràcters'),
+  passwordConfirm: string().min(1, 'Si us plau, confirmeu la vostra contrasenya'),
 }).refine((data) => data.password === data.passwordConfirm, {
   path: ['passwordConfirm'],
-  message: 'Passwords do not match',
+  message: 'Les contrasenyes no coincideixen',
 });
 
 const RegisterPage = () => {

@@ -75,7 +75,7 @@ const Home = () => {
         <Typography variant="h1" sx={{ m: 1, px: 3, fontWeight: 'bold' }} >Troba el curs per a tu</Typography>
       </Grid>
       <Grid m='1rem' >
-        <img src="../../../public/search.png" alt="lupa" />
+        <img src="../../../search.png" alt="lupa" />
       </Grid>
       
     </Grid>
@@ -92,7 +92,7 @@ const Home = () => {
       {courses?.length === 0 || query?.length === 0 ? (
         <Box maxWidth='sm' sx={{ mx: 'auto', py: '5rem' }}>
           <Message type='info' title='Info'>
-            No courses matching your search
+          No hi ha cap curs que coincideixi amb la teva cerca
           </Message>
         </Box>
       ) : (

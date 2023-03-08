@@ -77,7 +77,7 @@ const LoginPage = () => {
     {
       onSuccess: () => {
         query.refetch();
-        toast.success('You successfully logged in');
+        toast.success('Ha iniciat sessió correctament');
         navigate(from);
       },
       onError: (error) => useHandleError(error),
@@ -139,7 +139,7 @@ const LoginPage = () => {
                     component='h2'
                     sx={{ color: '#e5e7eb', mb: 2 }}
                 >
-                    Login to have access!
+                    Inicia sessió per tenir accés!
                 </Typography>
 
                 <FormProvider {...methods}>
