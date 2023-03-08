@@ -31,9 +31,9 @@ const RequireUser = ({ allowedRoles }) => {
     return (cookies.logged_in || user) &&
         allowedRoles.includes(user?.role[0]) ? (
         <Outlet />
-    ) /* : cookies.logged_in && user ? (
+    ) : cookies.logged_in && user ? (
         <Navigate to='/unauthorized' state={{ from: location }} replace /> 
-    )*/ : (
+    ) : (
         <Navigate to='/login' state={{ from: location }} replace />
     );
 };
