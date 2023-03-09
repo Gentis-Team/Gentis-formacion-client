@@ -55,7 +55,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               </CoursesContextProvider>
               </CentersContextProvider>
           </StateContextProvider>
-          <ReactQueryDevtools initialisopen="{false}" />
         </Router>
       </QueryClientProvider>
       </FiltersContextProvider>
