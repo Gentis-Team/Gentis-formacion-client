@@ -111,7 +111,6 @@ const CreateCourse = () => {
     }, [isSubmitSuccessful]);
 
     const onSubmitHandler = (values) => {
-        console.log('hola')
         createCourse(values);
     };
 
