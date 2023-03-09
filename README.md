@@ -113,9 +113,103 @@ Add additional notes about how to deploy this on a live system.
 - [@ecp12](https://github.com/ecp12)
 - [@adriansunye](https://github.com/adriansunye)
 
-
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 
 - Hat tip to anyone whose code was used
 - [Inspiration]
 - [References]
+
+
+```
+Gentis-formacion-client
+├─ .env
+├─ .gitignore
+├─ index.html
+├─ package-lock.json
+├─ package.json
+├─ public
+│  └─ vite.svg
+├─ README.md
+├─ src
+│  ├─ api
+│  │  ├─ authApi.js
+│  │  ├─ courseApi.js
+│  │  ├─ courses.js
+│  │  └─ index.js
+│  ├─ App.css
+│  ├─ App.jsx
+│  ├─ assets
+│  │  └─ react.svg
+│  ├─ components
+│  │  ├─ layout
+│  │  │  ├─ content
+│  │  │  │  ├─ CourseItem.jsx
+│  │  │  │  └─ CourseItemStyles.scss
+│  │  │  ├─ forms
+│  │  │  │  ├─ buttons
+│  │  │  │  │  └─ ButtonSubmit.jsx
+│  │  │  │  ├─ inputs
+│  │  │  │  │  ├─ Checkbox.jsx
+│  │  │  │  │  ├─ DateInput.jsx
+│  │  │  │  │  ├─ FileUploader.jsx
+│  │  │  │  │  ├─ FormInput.jsx
+│  │  │  │  │  ├─ RadioButton.jsx
+│  │  │  │  │  ├─ Textfield.jsx
+│  │  │  │  │  └─ TimeInput.jsx
+│  │  │  │  ├─ NewCourse.jsx
+│  │  │  │  ├─ NewStudent.jsx
+│  │  │  │  └─ NewUser.jsx
+│  │  │  ├─ index.js
+│  │  │  ├─ Layout.jsx
+│  │  │  └─ loaders
+│  │  │     └─ FullScreenLoader.jsx
+│  │  ├─ messages
+│  │  │  └─ Message.jsx
+│  │  ├─ modals
+│  │  │  ├─ CourseModal.jsx
+│  │  │  ├─ CreateCourse.jsx
+│  │  │  └─ UpdateCourse.jsx
+│  │  └─ navigation
+│  │     ├─ filters
+│  │     │  └─ Filters.jsx
+│  │     ├─ footer
+│  │     │  └─ Footer.jsx
+│  │     ├─ header
+│  │     │  └─ Header.jsx
+│  │     ├─ search
+│  │     │  └─ Search.jsx
+│  │     └─ tags
+│  │        ├─ Tag.jsx
+│  │        └─ Tags.jsx
+│  ├─ guards
+│  │  ├─ RequireGuest.jsx
+│  │  └─ RequireUser.jsx
+│  ├─ main.jsx
+│  ├─ middlewares
+│  │  └─ AuthMiddleware.jsx
+│  ├─ routes
+│  │  └─ Routes.jsx
+│  ├─ services
+│  │  └─ providers
+│  │     ├─ ColorModeProvider.jsx
+│  │     ├─ PermissionsProvider.jsx
+│  │     └─ StateContextProvider.jsx
+│  ├─ store
+│  │  └─ index.js
+│  ├─ utils
+│  │  └─ errorHandler.js
+│  └─ views
+│     ├─ errors
+│     │  ├─ PageNotFound.jsx
+│     │  └─ UnauthorizedPage.jsx
+│     ├─ home
+│     │  └─ Home.jsx
+│     ├─ login
+│     │  └─ Login.jsx
+│     ├─ profile
+│     │  └─ Profile.jsx
+│     └─ register
+│        └─ Register.jsx
+└─ vite.config.js
+
+```

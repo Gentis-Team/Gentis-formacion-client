@@ -2,3 +2,16 @@
 @import '@fontsource/roboto/400.css';
 @import '@fontsource/roboto/500.css';
 @import '@fontsource/roboto/700.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Kanit:wght@100;500;600;700;800;900&display=swap');
+
+body{
+    margin:0;
+    padding:0;
+}
+
+.boxUno{
+    display: flex ;
+    flex-direction: column;
+    padding: 20px;
+}
+
